@@ -29,7 +29,7 @@
 ## 3. 深度学习
 框架**优先**次序：
 * [pytorch](https://pytorch.org/tutorials/beginner/pytorch_with_examples.html#warm-up-numpy)
-* tensorflow
+* [tensorflow](http://c.biancheng.net/view/1881.html)
 * 飞桨
 
 编程任务：（二选一）
