@@ -14,5 +14,58 @@ dos2unix XXX.sh
 
 注意！ 这里我也尝试过使用统一utf-8，但是并没有任何效果。
 
-![A](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20201202212545.png)
+![image-20201202212800298](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20201202212800.png)
+
+![image-20201202214318144](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20201202214318.png)
+
+通过以上操作，即可将linux的命令进行集成。
+
+
+
+
+
+后记：
+
+文件：test_pwd.sh
+
+内容：
+
+```shell
+#!/bin/sh  
+cd /root/Neo4j/neo4j-community-3.4.1/bin
+pwd
+ls -l
+```
+
+运行后目录不被sh控制：
+
+- 使用bash运行，sh文件结束后所处的路径还是root,不受到sh文件的cd切换的影响   
+
+- ```shell
+  bash test_pwd.sh
+  ```
+
+- 使用./运行，同样不受cd影响
+
+- ````shell
+  ./test_pwd.sh
+  ````
+
+```
+出现Permission denied
+解决：
+chmod -R 777 test_pwd.sh    对sh文件进行授予最高权限
+通用做法：
+chmod -R 777 某一目录 对目录级联地授最高权限
+```
+- 使用./运行，同样受cd影响
+- 
+
+
+
+
+
+
+
+
 
