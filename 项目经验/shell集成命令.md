@@ -58,8 +58,16 @@ chmod -R 777 test_pwd.sh    对sh文件进行授予最高权限
 通用做法：
 chmod -R 777 某一目录 对目录级联地授最高权限
 ```
-- 使用./运行，同样受cd影响
-- 
+- 使用./运行，将会受cd影响
+
+  ![image-20201202225034937](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20201202225034.png)
+
+  
+
+```
+source ./test_pwd.sh
+这里会发现 source之后，工作目录变为了sh文件最后一个cd切换到的目录
+```
 
 
 
