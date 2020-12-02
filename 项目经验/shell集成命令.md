@@ -14,7 +14,5 @@ dos2unix XXX.sh
 
 注意！ 这里我也尝试过使用统一utf-8，但是并没有任何效果。
 
-![image-20201202211559614](https://cdn.jsdelivr.net/gh/hodge-ge/imgbed/20201202211608.png)
-
-
+![A](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20201202212545.png)
 
