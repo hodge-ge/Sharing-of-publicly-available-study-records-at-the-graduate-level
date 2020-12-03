@@ -69,6 +69,37 @@ source ./test_pwd.sh
 这里会发现 source之后，工作目录变为了sh文件最后一个cd切换到的目录
 ```
 
+如何在sh中切换或者激活conda环境？
+
+- 分析：shell调用命令是不走环境变量的，需要制定命令的路径
+- 具体做法：新建change_conda.sh文件，里面包含的内容是：
+
+```python
+#!/bin/sh  
+source /home/miniconda3/bin/activate py37
+python --version
+
+运行方式：
+source ./change_conda.sh
+```
+
+这样就会切换到虚拟环境py37下  
+
+遇到的问题：命名虚拟环境可以通过conda env list查看到，但是切换时提示找不到。
+
+这是因为activate和虚拟环境不配套，一定确认好是  
+
+```
+source 创建虚拟环境A的activate绝对路径 虚拟环境A 
+```
+
+```
+上面的py37是由home/miniconda3/bin下的create创建的。
+而不是实验室默认的opt/conda/bin下的create创建的。
+```
+
+![image-20201203100058870](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20201203100058.png)
+
 
 
 
