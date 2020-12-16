@@ -14,6 +14,14 @@
    将当前所在的win10env虚拟环境写入内核：python -m ipykernel install --user
    ```
 
-   
+   2.OCR的安装
+
+   ```
+   https://huaweicloud.blog.csdn.net/article/details/92786494
+   ```
+
+   pip install pyocr
+
+   tesseract --list-langs
 
    
