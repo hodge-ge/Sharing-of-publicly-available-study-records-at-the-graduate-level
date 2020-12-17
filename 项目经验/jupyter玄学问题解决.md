@@ -22,6 +22,14 @@
 
    pip install pyocr
 
-   tesseract --list-langs
+   
+
+    --list-langs
+
+2. 语言包配置
+
+   ```
+   https://huaweicloud.blog.csdn.net/article/details/92786494
+   ```
 
    
