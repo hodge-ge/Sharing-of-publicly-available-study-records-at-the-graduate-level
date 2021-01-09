@@ -40,7 +40,7 @@ html
             <div class="modal-footer">
                 <button type="button" class="btn btn-xs btn-white" data-dismiss="modal">取 消</button>
                 <button type="button" class="btn  btn-xs btn-danger" id="weapon-confirm-btn" data-dismiss="modal" onclick="upload()">上传</button>
-                <!--点击上传后电泳upload函数传送数据-->
+                <!--点击上传后按钮后upload函数传送数据-->
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
@@ -83,5 +83,79 @@ let data;
      }
  }
 
+
+function upload() {
+    let fd = new FormData();
+    let files = $('#upFile')[0].files;
+//    console.log("里面内容1：",$('#upFile')[0].files);
+    fd.append('file', files[0]);
+    fd.append('csrfmiddlewaretoken', '{{ csrf_token }}');// post 提交的时候 django 会启动 csrf 验证
+
+    $.ajax({
+        method:'post',
+        url:'/upload',
+        data:fd,
+        cache:false,
+        processData:false,
+        contentType:false,
+
+        success:function (res) {
+            alert("上传成功");
+
+            $('#upFile').val('');
+
+            $.ajax({
+            method:'get',
+            url: "/item",
+            data:{"type":"weapon"},
+            dataType:'json',
+            success:function (res) {
+                $('#weapon-pagination').pagination({
+                    dataSource: res,
+                    locator:"weapon",
+                    pageSize: 10,
+                    showGoInput: true,
+                    showGoButton: true,
+                    callback: function(data, pagination) {
+                        let html=setData(data,"weapon");
+                        $('#weaponResultTable').html(html);
+                     }
+                })
+            }
+        })
+        },
+        error: function (res) {
+            console.log(res)
+            alert("上传失败")
+        }
+})
+}
+
+```
+
+url块
+
+```python
+    path('upload', views.upload_csv, name='upload_csv'),
+```
+
+view块
+
+```python
+
+def upload_csv(request):
+    # try:
+    csv_files = request.FILES["file"]
+    # if not csv_files.name.endswith('.csv'):
+    #     messages.error(request, 'File is not CSV type')
+    #     return HttpResponse("File is not CSV type!")
+    # csv_files = request.FILES.get('file')
+    file_data = csv_files.read().decode("gbk")
+    lines = file_data.split("\n")
+    # except Exception as e:
+    #     # logging.getLogger("error_logger").error("Unable to upload file. " + repr(e))
+    #     messages.error(request, "Unable to upload file. " + repr(e))
+
+    return HttpResponse("OK")
 ```
 
