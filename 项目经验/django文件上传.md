@@ -2,9 +2,11 @@
 
 来源：军语管理系统的完善。
 
-[ ]ajax文件上传（不到服务器）
+[x]ajax文件上传（不到服务器）
 
 [ ] 链接上传（到服务器）
+
+https://blog.csdn.net/lianshaohua/article/details/81781582
 
 ## ajax不传输文件到服务器：
 
