@@ -236,7 +236,42 @@ encoder和decoder结构不同
 
   换个角度：
 
-  
+  ![image-20210316181600590](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210316181600590.png)
 
-  
+
+上图可以得知，feed forward是全连接层。TRM的核心就是多头注意力和masked多头注意力。
+
+![image-20210316182017418](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210316182017418.png)
+
+x乘以矩阵得到a向量，具体的，a可以分为qkv。qkv由x分别乘以权重矩阵得到。q代表索引，k代表键,v代表数值。
+
+**多头注意力机制=self-attention**
+
+---
+
+拆解来看，单头注意力过程
+
+![image-20210316183501604](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210316183501604.png)
+
+含义是用x1要得到b1要多x3有多大注意。要做的是用x1得到的q1乘以x3得到的k3
+
+![image-20210316183700377](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210316183700377.png)
+
+这样就能看出来，用x<sub>1</sub>生成b<sub>1,2,3,4</sub> 需要对x<sub>1,2,3,4</sub> 的注意力。a<sup>^</sup><sub><i,j></sub> 求和是1，代表xi对xj的关注率。
+
+化简得到：
+
+![image-20210316184025827](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210316184025827.png)
+
+最后用a<sup>^</sup><sub><i,j></sub> 乘以对应的v<sub>j</sub> 求和得到b<sub>i</sub>
+
+![image-20210316184456041](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210316184456041.png)
+
+目标：获得b1，要对x<sub>1-4</sub> 分别给与多大的注意。
+
+同理，扩展到多头注意力：b<sup>11</sup> 代表
+
+![image-20210316184850659](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210316184850659.png)
+
+如果生成多组的a，比如生成a<sup>11</sup> a<sup>12</sup> 分别对应q<sup>11/12</sup> k<sup>11/12</sup> v<sup>11/12</sup>
 
