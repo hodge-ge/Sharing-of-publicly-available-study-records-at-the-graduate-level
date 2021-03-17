@@ -390,6 +390,10 @@ TRM模型：
 
 ![image-20210317215719564](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210317215719564.png)
 
+1. 位置编码 sin cos线性变换函数，两个字越近向关联度越大。这也符合基础假设：越近越相关。
+
+
+
 
 
 
