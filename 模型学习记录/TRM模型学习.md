@@ -384,6 +384,10 @@ TRM模型：
 
   整体结构：
 
+  ![image-20210318172556906](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210318172556906.png)
+
+  ![image-20210318174202028](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210318174202028.png)
+
 - 解码器
 
 第二部分:
@@ -391,6 +395,16 @@ TRM模型：
 ![image-20210317215719564](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210317215719564.png)
 
 1. 位置编码 sin cos线性变换函数，两个字越近向关联度越大。这也符合基础假设：越近越相关。
+
+   由注意力矩阵的得来来说明位置编码能实现序列信息
+
+   注意力矩阵每个元素是说当前字和所在句的所有词的相关度。位置编码和注意力矩阵类似，也是说的当前字和所在句的所有词的位置相关性。  都是主对角线最高，自己和自己最相关。
+
+2.  Bidirectional Encoder Representations from Transformers, 如果翻译过来也就是**双向transformer编码表达** 
+
+   ![img](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\bidirectional.png)
+
+   
 
 
 
