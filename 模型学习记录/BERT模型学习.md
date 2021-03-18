@@ -4,13 +4,13 @@
 
 https://www.bilibili.com/video/BV1Ey4y1874y
 
-![image-20210316225810743](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\BERT模型学习.assets\image-20210316225810743.png)
+![image-20210316225810743](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318184346.png)
 
 1. bert整体模型架构
 
    基础架构是TRM的编码器。
 
-   ![image-20210316231128390](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\BERT模型学习.assets\image-20210316231128390.png)
+   ![image-20210316231128390](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318184351.png)
 
    bert-base 是12层encoder，bert-large是24层encoder
 
@@ -20,7 +20,7 @@ https://www.bilibili.com/video/BV1Ey4y1874y
 
    
 
-   ![image-20210317071614444](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\BERT模型学习.assets\image-20210317071614444.png)
+   ![image-20210317071614444](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318184401.png)
 
    堆叠指的是编码器或者解码器。
 
@@ -28,17 +28,17 @@ https://www.bilibili.com/video/BV1Ey4y1874y
 
    对于TRM模型来说输入是 input embedding 和位置编码信息对位相加。
 
-   ![image-20210317072240066](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\BERT模型学习.assets\image-20210317072240066.png)
+   <img src="https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318184413.png" alt="image-20210317072240066" style="zoom:33%;" />
 
    但是BERT的输入是三部分：
 
-   ![image-20210317072138468](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\BERT模型学习.assets\image-20210317072138468.png)
+   <img src="https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318184422.png" alt="image-20210317072138468" style="zoom:33%;" />
 
    词嵌入+句子嵌入+位置嵌入（注意和TRM的positional encoding是不同的）
 
    bert输入部分是什么样子：
 
-   ![image-20210317072407847](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\BERT模型学习.assets\image-20210317072407847.png![image-20210317073536594](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\BERT模型学习.assets\image-20210317073536594.png)
+   ![image-20210317072407847](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\BERT模型学习.assets\image-20210317072407847.png<img src="https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318184430.png" alt="image-20210317073536594" style="zoom:80%;" />
 
    
 
@@ -57,11 +57,11 @@ https://www.bilibili.com/video/BV1Ey4y1874y
 
    使用的语料是没标注的语料。
 
-   ![image-20210317074026201](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\BERT模型学习.assets\image-20210317074026201.png)
+   ![image-20210317074026201](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318184438.png)
 
    例子：我爱吃饭
 
-   ![image-20210317074242965](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\BERT模型学习.assets\image-20210317074242965.png![image-20210317074549072](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\BERT模型学习.assets\image-20210317074549072.png)
+   ![image-20210317074242965](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\BERT模型学习.assets\image-20210317074242965.png![image-20210317074549072](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318184448.png)
 
    
 
@@ -71,23 +71,23 @@ https://www.bilibili.com/video/BV1Ey4y1874y
 
    ==mask的作用：打破原有文本的信息，让模型从mask周围信息学习重建信息。==
 
-   缺点：![image-20210317074949373](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\BERT模型学习.assets\image-20210317074949373.png)
+   缺点：![image-20210317074949373](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318184457.png)
 
    吃 饭独立了。 mask之间独立了，这是mask模型的缺点。
 
    概率
 
-   ![image-20210317075058675](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\BERT模型学习.assets\image-20210317075058675.png)
+   ![image-20210317075058675](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318184502.png)
 
    1000个单词，拿出来150个词汇进行处理，15个换成其他词汇干扰，15个词汇不动，120个词汇换成mask。
 
-   ![image-20210317075445189](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\BERT模型学习.assets\image-20210317075445189.png)
+   ![image-20210317075445189](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318184513.png)
 
    mask_indices 是15%的词汇
 
    接下来看NSP任务：
 
-   ![image-20210317075646118](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\BERT模型学习.assets\image-20210317075646118.png)
+   ![image-20210317075646118](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318184521.png)
 
    正样本：一个主题两个连续段落，顺序没颠倒
 
@@ -97,7 +97,7 @@ https://www.bilibili.com/video/BV1Ey4y1874y
 
 3. 微调bert
 
-   ![image-20210317080253676](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\BERT模型学习.assets\image-20210317080253676.png)
+   ![image-20210317080253676](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318184527.png)
 
    句子对分类、单句子分类、问答系统、序列标注。
 
@@ -109,21 +109,21 @@ https://www.bilibili.com/video/BV1Ey4y1874y
 
    一般做法：
 
-   ![image-20210317080634280](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\BERT模型学习.assets\image-20210317080634280.png)
+   ![image-20210317080634280](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318184534.png)
 
    
 
    分解为四个步骤：
 
-   ![image-20210317091112235](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\BERT模型学习.assets\image-20210317091112235.png)
+   ![image-20210317091112235](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318184539.png)
 
    第一步：我们是不做的，直接拿谷歌的来用
 
    第二步：是领域的自适应，领域迁移。
 
-   ​	![image-20210317095642880](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\BERT模型学习.assets\image-20210317095642880.png)
+   ​	![image-20210317095642880](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318184553.png)
 
-   ​	![image-20210317095918742](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\BERT模型学习.assets\image-20210317095918742.png)
+   ​	![image-20210317095918742](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318184558.png)
 
    
 
