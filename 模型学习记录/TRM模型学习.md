@@ -16,15 +16,15 @@ https://www.bilibili.com/video/BV1Di4y1c7Zm
 
 1. 位置编码
 
-   ![image-20210315231609188](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210315231609188.png)
+   ![image-20210315231609188](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183029.png)
 
 看为黑盒子，初步细化
 
-![image-20210315231654346](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210315231654346.png)
+![image-20210315231654346](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183050.png)
 
 拆解为 编码器-解码器 类似于seq2seq
 
-![image-20210315231750021](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210315231750021.png)
+![image-20210315231750021](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183055.png)
 
 拆解为6编码6解码的方块图
 
@@ -36,7 +36,7 @@ encoder和decoder结构不同
 
 模型图：
 
-![image-20210316102408371](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316102408371.png)
+![image-20210316102408371](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183101.png)
 
 左侧是编码器，右侧是解码器
 
@@ -46,7 +46,7 @@ encoder和decoder结构不同
 
 - 编码器
 
-  ![image-20210316102733675](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316102733675.png)
+  ![image-20210316102733675](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183110.png)
 
   - 输入部分
 
@@ -54,19 +54,19 @@ encoder和decoder结构不同
 
     位置编码的原因：
 
-    ​	![image-20210316102907775](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316102907775.png)
+    ​	![image-20210316102907775](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183115.png)
 
     RNN的参数是一套的，UVW是一套参数，不是好几套。每个时间步都是共享参数的。UVW是同步更新的。是有时序关系的，先处理我，在处理爱，再处理你。 
 
     而TRM模型是有批处理能力的，一起处理速度更快，这就忽略了句子的时序性。我在最前面，爱在中间，你在最后面。
 
-    ![image-20210316134757245](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316134757245.png)
+    ![image-20210316134757245](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183123.png)
 
     偶数位置用sin，奇数位置用cos。
 
-    ![image-20210316103819372](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316103819372.png)
+    ![image-20210316103819372](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183132.png)
 
-     ![image-20210316134847596](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316134847596.png)
+     ![image-20210316134847596](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183128.png)
 
     PE公式体现了绝对位置信息，公式2推理后得到公式3提现相对位置。
 
@@ -76,11 +76,11 @@ encoder和decoder结构不同
 
     - 基本的注意力机制
 
-      ![image-20210316135607892](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316135607892.png)
+      ![image-20210316135607892](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183143.png)
 
       用图片举例
 
-      ![image-20210316135656516](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316135656516.png)
+      ![image-20210316135656516](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183147.png)
 
       关键是QKV三个矩阵，公式中的d<sub>k</sub>是先不用管的。
 
@@ -90,11 +90,11 @@ encoder和decoder结构不同
 
       用文本举例
 
-      ![image-20210316140345458](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316140345458.png)
+      <img src="https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183209.png" alt="image-20210316140345458" style="zoom:80%;" />
 
       展开进行计算
 
-      ![image-20210316140434873](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316140434873.png)
+      ![image-20210316140434873](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183156.png)
 
       爱和我、不、爱、你 分别计算，得到S<sub>1-4</sub>的结果之后再softmax归一，得到a<sub>1-4</sub>其和为1.
 
@@ -104,21 +104,21 @@ encoder和decoder结构不同
 
       只有词向量的情况下怎么获取QKV矩阵
 
-      ![image-20210316140933652](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316140933652.png)
+      ![image-20210316140933652](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183223.png)
 
       X乘以W<sup>Q/K/V</sup>得到Q/K/V
 
-      ![image-20210316141225558](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316141225558.png)
+      ![image-20210316141225558](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183228.png)
 
       实际中使用矩阵实现并行
 
-      ![image-20210316141341569](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316141341569.png)
+      ![image-20210316141341569](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183233.png)
 
       W<sup>QKV</sup>是一套参数，是单头注意力。实际中会用多套参数，就是多头注意力机制。
 
-      ![image-20210316141518007](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316141518007.png)
+      ![image-20210316141518007](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183238.png)
 
-      ![image-20210316141709728](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316141709728.png)
+      ![image-20210316141709728](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183243.png)
 
       
 
@@ -128,7 +128,7 @@ encoder和decoder结构不同
 
     接下来是残差网络和LayNorm
 
-    ![image-20210316142212157](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316142212157.png)
+    <img src="https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183259.png" alt="image-20210316142212157" style="zoom:80%;" />
 
     x是词向量，向上走，和位置编码对位相加，得到新的x<sub>1,2</sub> 之后进入注意力层，得到输出结果Z<sub>1,2</sub> 之后进入残差网络，将Z矩阵和输入X（位置编码之后）矩阵原封不动的拿来对位相加，再做layerNorm再输出。
 
@@ -138,9 +138,9 @@ encoder和decoder结构不同
 
     两个weight可以归结为一个函数F(x),输出结果是加号上面的箭头。拿上输入X和F(x)对位相加，再输出。
 
-    ![image-20210316143203541](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316143203541.png)
+    ![image-20210316143203541](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183341.png)
 
-    ![image-20210316143336915](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316143336915.png)
+    ![image-20210316143336915](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183325.png)
 
     确保了梯度不消失，因为有1的存在。梯度不消失，网络才能提高深度。
 
@@ -152,11 +152,11 @@ encoder和decoder结构不同
 
     很少用BN，几乎都用LN，因为BN在NLP任务重效果不好。
 
-      BN：![image-20210316143939894](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316143939894.png)
+      BN：![image-20210316143939894](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183315.png)
 
     BN在于针对整个batch样本在同一维度做处理
 
-    ![image-20210316144047340](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316144047340.png)
+    ![image-20210316144047340](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183350.png)
 
     每列代表样本，小红、小绿；每行代表特征，体重、身高。
 
@@ -170,7 +170,7 @@ encoder和decoder结构不同
 
     为什么用LN？为什么LN对一个样本的所有单词缩放可以起到效果。
 
-    ![image-20210316150208959](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316150208959.png)
+    ![image-20210316150208959](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183356.png)
 
     按照BN的思想，将我、今进行处理，并不能代表什么信息，不能像 体重 那样作为特征来缩放。
 
@@ -180,7 +180,7 @@ encoder和decoder结构不同
 
     再看前馈神经：
 
-    ![image-20210316150558521](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316150558521.png)
+    ![image-20210316150558521](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183400.png)
 
     Z<sub>1,2</sub>通过feed forward两层全连接，再过一个残差和LN得到编码结果。
 
@@ -192,43 +192,43 @@ encoder和decoder结构不同
 
   解码器可以分为两部分
 
-  ![image-20210316151012818](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316151012818.png)
+  ![image-20210316151012818](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183411.png)
 
   第一模块 掩盖的多头注意力机制
 
-  ![image-20210316151221422](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316151221422.png)
+  ![image-20210316151221422](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183419.png)
 
   为什么mask?
 
-  ![image-20210316151309528](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316151309528.png)
+  ![image-20210316151309528](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183454.png)
 
   没有mask时
 
-  ![image-20210316151418229](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316151418229.png)
+  <img src="https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183435.png" alt="image-20210316151418229" style="zoom:67%;" />
 
   平时做题看着完全的答案，考试的时候没有答案在手边参考，做题就不好。所以需要平时练习的时候就把答案盖住。
 
-  ![image-20210316151604846](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316151604846.png)
+  <img src="https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183445.png" alt="image-20210316151604846" style="zoom:50%;" />
 
   把you now给的信息叉掉，确保做题和考试状态的一致性。
 
   第二模块 交互层
 
-  ![image-20210316151717615](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316151717615.png)
+  ![image-20210316151717615](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183505.png)
 
   这里是典型的多头注意力机制。
 
-  ![image-20210316151754852](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316151754852.png)
+  ![image-20210316151754852](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183547.png)
 
   所有编码器的输出和每一个解码器去做交互。
 
-  ![image-20210316151920666](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316151920666.png)
+  ![image-20210316151920666](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183556.png)
 
   记住，编码器输出的是K、V矩阵，解码器生成Q矩阵。
 
   
 
-  ![image-20210316152048833](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TFM模型学习.assets\image-20210316152048833.png)
+  ![image-20210316152048833](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183558.png)
 
   虚线代表KV矩阵的输出，是和每一个的解码器的交互层的Q做交互。
 
@@ -238,7 +238,7 @@ encoder和decoder结构不同
 
   换个角度：
 
-  ![image-20210316181600590](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210316181600590.png)
+  ![image-20210316181600590](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183609.png)
 
 
 上图可以得知，feed forward是全连接层。TRM的核心就是多头注意力和masked多头注意力。
@@ -253,31 +253,31 @@ x乘以矩阵得到a向量，具体的，a可以分为qkv。qkv由x分别乘以�
 
 拆解来看，单头注意力过程
 
-![image-20210316183501604](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210316183501604.png)
+![image-20210316183501604](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183620.png)
 
 含义是用x1要得到b1要多x3有多大注意。要做的是用x1得到的q1乘以x3得到的k3
 
-![image-20210316183700377](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210316183700377.png)
+![image-20210316183700377](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183626.png)
 
 这样就能看出来，用x<sub>1</sub>生成b<sub>1,2,3,4</sub> 需要对x<sub>1,2,3,4</sub> 的注意力。a<sup>^</sup><sub><i,j></sub> 求和是1，代表xi对xj的关注率。
 
 化简得到：
 
-![image-20210316184025827](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210316184025827.png)
+![image-20210316184025827](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183633.png)
 
 最后用a<sup>^</sup><sub><i,j></sub> 乘以对应的v<sub>j</sub> 求和得到b<sub>i</sub>
 
-![image-20210316184456041](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210316184456041.png)
+![image-20210316184456041](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183639.png)
 
 目标：获得b1，要对x<sub>1-4</sub> 分别给与多大的注意。
 
 同理，扩展到多头注意力：b<sup>11</sup> 代表第一套由W<sub>q\k\v</sub> 得到的q k v参数计算出来的注意力。
 
-![image-20210316184850659](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210316184850659.png)
+![image-20210316184850659](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183646.png)
 
 如果生成多组的a，比如生成a<sup>11</sup> a<sup>12</sup> 分别对应q<sup>11/12</sup> k<sup>11/12</sup> v<sup>11/12 </sup> 经过计算得到b12
 
-![image-20210316223800243](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210316223800243.png)
+![image-20210316223800243](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183653.png)
 
 更换一套参数对应q<sup>12</sup> k<sup>12</sup> v<sup>12 </sup> 经过计算得到得到b<sup>12</sup>
 
@@ -307,7 +307,7 @@ TRM理解：
 
   NLP实际任务，问答、NER
 
-![image-20210317102227260](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210317102227260.png)
+![image-20210317102227260](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183659.png)
 
 TRM和LSTM区别：
 
@@ -316,11 +316,11 @@ TRM和LSTM区别：
 
 TRM模型：
 
-![img](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\intuition.jpg)
+![img](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183708.jpg)
 
 ==关键的点：解码器的输出又落下来作为输入了== 
 
-![img](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\encoder.jpg)![img](https://github.com/aespresso/a_journey_into_math_of_ml/raw/e081b67d51a8dc74daa55bb0de35de86acdaa536/03_transformer_tutorial_1st_part/imgs/encoder.jpg)
+![img](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183713.jpg)![img](https://github.com/aespresso/a_journey_into_math_of_ml/raw/e081b67d51a8dc74daa55bb0de35de86acdaa536/03_transformer_tutorial_1st_part/imgs/encoder.jpg)
 
 - 编码器
 
@@ -332,7 +332,7 @@ TRM模型：
 
        数据来源是 字向量表
 
-       ![image-20210317135258679](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210317135258679.png)vocab_size是整个词典里面的字
+       ![image-20210317135258679](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183737.png)vocab_size是整个词典里面的字
 
        embedding_size是用多少个数字表示每个字 常设为300
 
@@ -344,23 +344,21 @@ TRM模型：
 
        用sin cos分别计算偶数、奇数位置的位置信息:
 
-       
-
-       ![img](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkQAAAJcCAYAAAAYZbusAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDMuMC4zLCBodHRwOi8vbWF0cGxvdGxpYi5vcmcvnQurowAAIABJREFUeJzs3XmYXVWVsPF3JSGEMM8CiQYQUBohakAUEQRRtBl6QBSFL8wqH7SCiNDaoratNNjQdGtjpwMCSsugIKig8tkijcosyDyKEAgEZDAQyFTr++OeCjeVW1W3kjr73qTen899Uvfcc85aVUZrZ5+194rMRJIkaSQb1ekEJEmSOs0BkSRJGvEcEEmSpBHPAZEkSRrxHBBJkqQRzwGRJEka8RwQSTWIiI9GxM87GP+1EfFiRIzu5/MvRsR327zXuRHxleHNcPgM9r1KUjscEElLKSLeGRG/iYgXIuLZiPh1RGwPkJkXZOZ7O5VbZj6amatl5sI640TEwRGxsBqQ9L6+UXPMRyLiPb3vS32vklZsYzqdgLQ8iog1gB8DnwAuBsYCOwNzO5lXh/w2M9/Z6SQkaVk4QyQtnS0BMvN7mbkwM1/OzJ9n5u9h0czJdb0nR0RGxMcj4oGIeC4ivhkRUX222OOriJhUnT+m6V4PR8TsiPhDRHy0Oj4qIj4fEX+MiFkRcX5ErNnPPTaNiF9V97gaWK/5m4mISyLiyWq269qI+Itl/QFFxDURcXjT+7Z/JtXnR0TEPVXOd0fEWyLiO8BrgR9Vs1EntPheN46IK6pZuwcj4oime34xIi6uflazI+KuiJiyrN+rpOWfAyJp6dwPLIyI8yLi/RGxdhvX7AVsD2wH7A+8b7ALImJV4N+A92fm6sA7gNuqjw+uXu8GNgNWA/p7XPXfwC00BkL/CEzt8/lVwBbABsCtwAVtfD/DoeXPJCI+CHwR+D/AGsA+wJ8y8yDgUWDv6jHZqS3u+T1gBrAxsB/w1YjYvenzfYALgbWAK+j/ZyZpBHFAJC2FzPwz8E4ggf8Cnq5mJTYc4LJTMvP5zHwU+CUwuc1wPcA2EbFKZs7MzLuq4x8FTs/MhzPzReAk4MO9MyW9IuK1NAYd/5CZczPzWuBHfb6fczJzdmbOpTEQ2a53tqkNO0bE802vHdu8Dvr/mRwOnJqZN2XDg5n5x8FuFhETafz38tnMfCUzbwOmAwc1nXZdZl5Z1Rx9h8ZgTNII54BIWkqZeU9mHpyZE4BtaMxI/OsAlzzZ9PUcGjM6g8V4CfgQ8HFgZkT8JCLeUH28MdA8SPgjjbrAvoOyjYHnqns1nwtARIyOiFMi4qGI+DPwSPXRYo/VBnB9Zq7V9Lq+zeug/5/JROChIdyn18bAs5k5u+nYH4FNBog5ru8gUtLI44BIGgaZeS9wLo2B0VC9BIxvev+aPvf+WWbuAWwE3EtjRgrgCeB1Tae+FlgAPNXn/jOBtavHb83n9voIsC/wHmBNYFJ1PFg2A35fg3gM2Lyfz3KA654A1omI1ZuOvRZ4fAixJY1ADoikpRARb4iIT0fEhOr9ROAAYCizI71uA95V7aezJo1HX71xNoyIfarBzFzgRaB3efn3gGOrgunVgK8CF2XmguabV4+abga+FBFjI+KdwN5Np6xe3ftPNAYwX12K76G/7+tvImJ8RLweOGwI104Hjo+It0bD6yOid/D3FI2aqSVk5mPAb4CvRcS4iNi2iluqJkrScsoBkbR0ZgNvA26IiJdoDITuBD491Btl5tXARcDvaRQ+/7jp41HVPZ8AngV2AY6qPjuHRg3MtcAfgFeAY/oJ85Eq32eBk4Hzmz47n8ZjpceBu1m6QV0rZwDzaAxgzmMIg5LMvAT4JxrF4LOBHwLrVB9/Dfh8Va90fIvLD6Axy/UEcBlwcvUzlqR+ReZAs8+SJEkrPmeIJEnSiOeASJIkjXgOiCRJ0ojngEiSJI14HdmMLCL2BM4ERgPTM/OUgc6/aZO/tvJbkjRibP/4Zcu6D9iQzH/m4WK/Z1dab7Oi31u7is8QRcRo4JvA+4GtgQMiYuvSeUiSJPXqxCOzHYAHq/5L82g0Wdy3A3lIkiQBnRkQbUJjW/5eM1i8zxAAEXFkRNwcETdf9tIjpXKTJGnk6VlY7tWlOjEgavXscIlnl5k5LTOnZOaUv151Uv1ZSZKkEasTRdUzaHSy7jWBxhb7/XrTjw6pNaFmo9Z/3eAnDaNH33dC0Xivu/asovHuePOxReO96XdnFI13++Tjisbb7rbTi8Zbkb+/Ffl7A7htuyF3kVkmk2//l6LxVvTvr7js6XQGHdeJGaKbgC2qhpRjgQ8DV3QgD0mSJKADM0SZuSAijgZ+RmPZ/TmZeVfpPCRJUqXHGaKO7EOUmVcCV3YitiRJUl8dGRBJkqTukdYQ2bpDkiSp+AxRREwEzgdeA/QA0zLzzAGvWX29EqkB0PP4vcViAay+wdyi8UqLrtygXZK0GGuIOvLIbAHw6cy8NSJWB26JiKsz8+4O5CJJktSRVWYzgZnV17Mj4h4aO1U7IJIkqROsIepsDVFETALeDNzQ4rNFrTumX3h56dQkSdII0rFVZhGxGvAD4FOZ+ee+n2fmNGAawNwHfrNEaw9JkqTh0pEBUUSsRGMwdEFmXjrY+U8d8A/1J1VZ78hti8UCWHnDFbvqOMKxrCR1vS5uulpK8UdmERHA2cA9mVm2uY8kSVILnZgh2gk4CLgjIm6rjv19tXu1JEkqzaLqjqwyuw5YsZ8TSZKk5YqtOyRJGuncmHH5GBDtPePlYrF+9cvbBj9pGI3ecNWi8UoXzo0eZVG1utN2t53O7ZOP63QakrpEJ5fdjwZuBh7PzL06lYekkcnBkPQqm7t2dmPGTwL3dDC+JEkS0KEBUURMAP4SmN6J+JIkqUlPT7lXl+rUDNG/AifQ6HbfUnPrjj/NeapcZpIkacTpxMaMewGzMvOWgc7LzGmZOSUzp6w7fsNC2UmSNAJlT7lXl+rUxoz7RMQHgHHAGhHx3cw8sL8L7n/h8WLJ3fertxaLBbDNUeOLxivN1h1SZ/i/PWloOrEx40nASQARsStw/ECDIUmSVDN7mXV0lZkkSVJX6OjGjJl5DXBNJ3OQJGnE6+LanlKcIZIkSSPectG645T1dy4W638Kt51907prlw1Y+F8BoyzslCQtBzoyIIqItWhsyrgNkMChmfnbTuQiSdKI18UbJpbSqRmiM4GfZuZ+ETEWWLHXnkuSpK5WfEAUEWsA7wIOBsjMecC80nlIkqSKRdUdKareDHga+HZE/C4ipkfEqn1Pam7d8ZsXHyifpSRJGjE6MSAaA7wFOCsz3wy8BJzY96Tm1h3vWG2L0jlKkjRy2Ny1IzVEM4AZmXlD9f77tBgQNTvy61vWnlSv/Y+/sVgsgE+ttXnReKX/MsYoV5lJkrpfJ1p3PBkRj0XEVpl5H7A7cHfpPCRJUkOmrTs6tcrsGOCCaoXZw8AhHcpDkiSpMwOizLwNmNKJ2JIkqQ9Xmdm6Q5IkqVM7VR8LHE5jl+o7gEMy85X+zh+z6wGlUuPuOT8sFguANd5TNFyWbt0xesUuqrY1iaQVQhev/iql+AxRRGwC/B0wJTO3AUYDHy6dhyRJUq9OFVWPAVaJiPk02nY80aE8JEmSNUTlZ4gy83Hg68CjwEzghcz8ed/zmneqnn7+haXTlCRJI0gnepmtDewLbAo8D1wSEQdm5nebz8vMacA0gPmzHrBQQ5KkuvS4D1EnVpm9B/hDZj6dmfOBS4F3dCAPSZIkoDM1RI8CO0bEeOBlGjtV3zzQBXNPPb5EXgA88dKfisUCiDXWLRqveOsOV2FJkpYDnWjdcUNEfB+4FVgA/I7q0ZgkSeoAi6o7tlP1ycDJnYgtSZLUlztVS5I00vX0lHu1ISL2jIj7IuLBiDixxeevjYhfRsTvIuL3EfGBZf0ROCCSJEldIyJGA98E3g9sDRwQEVv3Oe3zwMWZ+WYamzv/x7LGre2RWUScA+wFzKp2pCYi1gEuAiYBjwD7Z+Zzg93riEuirjSXMH/hgmKxAFh1zbLxSrfusKhakrpfd9UQ7QA8mJkPA0TEhTS267m76ZwE1qi+XpNh2OC5zhmic4E9+xw7EfhFZm4B/KJ6L0mSRojmjZer15F9TtkEeKzp/YzqWLMvAgdGxAzgSuCYZc2rthmizLw2Iib1ObwvsGv19XnANcBn68pBkiS1oeCWLM0bL/ej1WOhvo8bDgDOzcx/iYi3A9+JiG1yGTqYl64h2jAzZwJUf27Q34nNI8gHX3ykVH6SJKmzZgATm95PYMlHYocBFwNk5m+BccB6yxK0a4uqM3NaZk7JzCmvX21Sp9ORJGnF1V2rzG4CtoiITSNiLI2i6Sv6nPMojY2diYg30hgQPb0sP4LS+xA9FREbZebMiNgImNXORZfMvKnmtBY3bszYovFifOHC6sI9a0aNtrBaktSezFwQEUcDPwNGA+dk5l0R8WXg5sy8Avg08F8RcSyNx2kHZ+Yy/bIpPSC6ApgKnFL9eXnh+INyMDS8HAxJUvfL7K7mrpl5JY1i6eZjX2j6+m5gp+GMWdsjs4j4HvBbYKuImBERh9EYCO0REQ8Ae1TvJUmSOqrOVWYH9PPR7nXFlCRJS6Fw4+9u1LVF1ZIkSaV0pLmrJEnqIt21U3VHlG7dcRqwNzAPeAg4JDOfH+xe+2+0Q11pLuHWl2cUiwUQ41YtGo/CrUlilEXVkqTuV7p1x9XANpm5LXA/cFKN8SVJktpStHVHZv686e31wH51xZckSW2yqLqjRdWHAlf196GtOyRJUikdGRBFxOeABcAF/Z1j6w5JkgrJnnKvLlV8lVlETKVRbL17u9tsT9u/3pyaHXzxRuWCAYxdpWi4fHl20XjRqmexJEldpuiAKCL2BD4L7JKZc0rGliRJ/bCGqHjrjm8AqwNXR8RtEfGtuuJLkiS1q3TrjrPriidJkpZSF9f2lGLrDkmSNOLZukOSpJHOGqKyrTuaPjseOA1YPzOfGexeK3/m1HqSbGGni75ULBZAjBlbNF7aukOSpCWUbt1BREwE9gAerTG2JElqV09PuVeXqm1AlJnXAs+2+OgM4ATAqQNJktQVihZVR8Q+wOOZeXsb5y5q3TH9/AsLZCdJ0gjlTtXliqojYjzwOeC97ZyfmdOAaQDzZz3gbJIkSapNyVVmmwObArdHo5/DBODWiNghM58c6MIFv/zvAuk1vDv+XCwWAKNGl423cH7RcKNGO5aVpK7XxbU9pRQbEGXmHcAGve8j4hFgSjurzCRJkupUunWHJElS1ynduqP580l1xZYkSUPQxcXOpdi6Q5IkjXi27pAkaaSzqLp8646IOAY4GlgA/CQzTxjsXt/6zAN1pbmEw/Z4uVisjrB1x7BqLJiUJC3v6pwhOhf4BnB+74GIeDewL7BtZs6NiA36uVaSJJViDVHx1h2fAE7JzLnVObPqii9JktSu0kXVWwI7R8QNEfGriNi+vxObW3f89sVyj8wkSRpxbO5afEA0Blgb2BH4DHBxROsqjMyclplTMnPK21fbomSOkiRphCm9ymwGcGlmJnBjRPQA6wFPD3TRSbOuLZEbAB9/10eKxQKgZ2HRcFm4dUe4sYMkdb8unrkppfSvqx8CuwFExJbAWMDWHZIkqaPqXHb/PWBXYL2ImAGcDJwDnBMRdwLzgKnVbJEkSeoUfxV3pHXHgXXFlCRJWhruVC1J0khnDZG9zCRJkoq27oiIycC3gHE0WncclZk3DnavrdaaUFeaS4htdiwWCyjeSqN4647wubQkdT1niGqdIToX2LPPsVOBL2XmZOAL1XtJkqSOqrOo+tqImNT3MLBG9fWawBN1xZckSW2yl1nxoupPAT+LiK/TmJ16R38nRsSRwJEAm6y+GeuO37BMhpIkacQpXVT9CeDYzJwIHAuc3d+Jza07HAxJkqQ6lZ4hmgp8svr6EmB6Oxf9eOIqtSXU16iNyvZNywXzisajcOuOUWMsqpakrmdRdfEZoieAXaqvdwNsYy9JkjqudOuOI4AzI2IM8ApVjZAkSeogW3d0pHXHW+uKKUmStDRs3SFJ0khnDdHyMSDa4L//sVisGFuugBug57kni8YrvlO1zWEkScuB2n5dRcTEiPhlRNwTEXdFxCer4+tExNUR8UD159p15SBJktrQ01Pu1aXq/Pf7AuDTmflGYEfg/0bE1sCJwC8ycwvgF9V7SZKkjqmzqHomMLP6enZE3ANsAuxLY/UZwHnANcBn68pDkiQNwtYdZfYhqnqavRm4AdiwGiz1Dpo26OeaIyPi5oi4efqFl5dIU5IkjVC1F1VHxGrAD4BPZeafI6Kt6zJzGjANYO4Dv3GDBEmSapI9/pqtdUAUESvRGAxdkJmXVoefioiNMnNmRGwEzBrsPjn7mTrTXDzWSmOLxQLg5dll480v3Cok/B+ZJKn71bnKLGg0b70nM09v+ugKGj3NqP70eZgkSZ3kKrNaZ4h2Ag4C7oiI26pjfw+cAlwcEYcBjwIfrDEHSZKkQdW5yuw6oL+Cod3riitJkobIVWbFu91LkiR1neWidcfte51bLNZ2F/11sVgAFC7izoXzi8azdYckaXnQidYdp0XEvRHx+4i4LCLWqisHSZLUhp4s9+pSnWjdcTWwTWZuC9wPnFRjDpIkSYMq3rojM3/edNr1wH515SBJktrQxcvhS+lE645mhwJX9XPNotYdP5zzh3oTlCRJI1rx1h1Nxz9H47HaBa2ua27dccPGf9O9Dx0lSVreOUPUkdYdRMRUYC9g98wcdLDzwVceqC/JPu697bfFYgHEG7ctGq+0UcvFOkZJ0khX26+r/lp3RMSewGeBXTJzTl3xJUlSmwafm1jhdaJ1x78BKwNXN8ZMXJ+ZH68xD0mSpAF1onXHlXXFlCRJS8EaIlt3SJIk1VlDNBE4H3gN0ANMy8wzmz4/HjgNWD8znxnoXnMWzK0rzSW88v/uKhYLYJVNJhSNxyqrlY23gg+5I3zuLmkF0MU7SJdSZw1R707Vt0bE6sAtEXF1Zt5dDZb2AB6tMb4kSVJbavv3e2bOzMxbq69nA/cAm1QfnwGcADgklSSp07Kn3KtLFd+pOiL2AR7PzNsHuWbRTtWvzHuhQJaSJGmkKrpTNY3HaJ8D3jvYdc07Va+3xpbOJEmSVBdriOqdIWqxU/XmwKbA7RHxCDABuDUiXlNnHpIkSQMpulN1Zt4BbNB0ziPAlMFWmZ09fkpdaS7hzhvmF4sFsP0+zxaNx9hxRcPFCr7KTJK0Yii+U3VmujGjJEldJN2YsSM7VTefM6mu+JIkSe2yF7kkSSOdRdUr+j7CkiRJg+tI646IOAY4msYy/J9k5gkD3eu939utrjSX8LVDflksFsCUZ8sWVcc66xWN55BbkpYDXbxhYinFW3cAGwL7Attm5tyI2GDAu0iSJNWszqLqmcDM6uvZEdHbuuMI4JTMnFt9NquuHCRJUhusISrfugPYEtg5Im6IiF9FxPb9XLOodcfZP762RJqSJGmEKtq6IzP/HBFjgLWBHYHtgYsjYrPMXGx42ty64+VfTnfoKklSXdyHqN4BUYvWHQAzgEurAdCNEdEDrAc83d99Rm/xtjrTXMwNC39QLBZAzzOrFI03+nXzisYLN3ZQl9ruttO5ffJxnU5DUpco2rqj8kNgN+CaiNgSGAsM2LpDkoabgyGpiTVE5Vt3AOcA50TEncA8YGrfx2WSJEkldap1x4F1xZUkSUPkPkRumydJkmTJqyRJI501ROVbd0TEZOBbwDgau1kflZk3DnSvF485uq40l3DvnOeKxQJYOKvsRt2j588vGi9G9ffUVJKk7tGJ1h2nAl/KzKsi4gPV+11rzEOSJGlAnWjdkcAa1WlrAk/UlYMkSRpcujFjR1p3fAo4LSIeA74OnNTPNYtad5z3yMwSaUqSpBGq9gFR39YdwCeAYzNzInAsjc0bl5CZ0zJzSmZOmTppo7rTlCRp5OrJcq8u1YnWHVOBT1ZfXwJMH+w+f3vT2HoSbOGpl54vFgtg/pNrF403dt7covHc2EGStDzoROuOJ4BdgGtotPB4oK4cJElSG7p45qaUTrTuOAI4s+p6/wpwZI05SJIkDapTrTveWldcSZI0RF3WuiMi9gTOBEYD0zPzlH7O249G+c32mXnzssS0wkOSJHWNiBgNfBN4P7A1cEBEbN3ivNWBv6Oxgn2ZOSCSJGmk665VZjsAD2bmw5k5D7gQ2LfFef9IY3PnV4bjR1BnUfU44Fpg5SrO9zPz5IjYlMY3tw5wK3BQ9Q3367pZd9eV5hJKl5XNebpsO7nxtu6QJHVQRBzJ4vXD0zJzWtP7TYDHmt7PAN7W5x5vBiZm5o8j4vjhyKvO38Zzgd0y88Vq+f11EXEVcBxwRmZeGBHfAg4DzqoxD0mSNIAsuMqsGvxMG+CUVv+SXpRgRIwCzgAOHs68antklg0vVm9Xql5JY6n996vj5wF/VVcOkiRpuTMDmNj0fgKLt/laHdgGuCYiHgF2BK6IiCnLErTujRlHA7cAr6dRIPUQ8HxmLqhOmUFjaqzVtYum1EaNXpNRo1atM1VJkkau7tqH6CZgi6rE5nHgw8BHej/MzBeA9XrfR8Q1wPFdvcosMxdm5mQao7sdgDe2Oq2faxe17nAwJEnSyFBNmhwN/Ay4B7g4M++KiC9HxD51xS1S0ZuZz1cjuB2BtSJiTPUN950Ga+nYjd9Vc4av+s9nbiwWC+CFP40vGm+9wkXVjLGoWpK6Xpd1u8/MK4Er+xz7Qj/n7jocMWubIYqI9SNirerrVYD30Bjp/RLYrzptKnB5XTlIkiS1o84Zoo2A86o6olE0prx+HBF3AxdGxFeA39FPt3tJkqRS6mzd8XvgzS2OP0yjnkiSJHWD7iqq7gh3qpYkSSNe2W2SJUlS93GGqCOtOy4ApgDzgRuBj2XmgEufvvjptetKcwlXfmX9YrEA/jRnXNF4m8+dWzTeit66Y1T4fyKStCKo85FZb+uO7YDJwJ4RsSNwAfAG4E3AKsDhNeYgSZIGkZnFXt2qzqLqBJZo3VHtLQBARNxIYy8iSZKkjqm1qDoiRkfEbcAs4OrMvKHps5WAg4Cf9nPtkRFxc0TcfM6vy3W7lyRpxOnJcq8uVbR1R0Rs0/TxfwDXZub/9nPtotYdh+60dZ1pSpKkEa506449gTsj4mRgfeBj7Vy/0gHH15jd4iZ/vVwsgKfnjS0aj/kLBj9nOLmxgyR1vy6euSmldOuOeyPicOB9wAGZ2V3NUyRJ0ojUidYdC4A/Ar+NCIBLM/PLNeYhSZIGkM4QdaR1h5tBSpKkruLgRJKkkc4ZIkteJUmSirfuaPr834FDMnO1we41//yv1ZXmEnZeOL5YLICnC8/R5dx5ZQOu4K07JGmF4BKnWh+Z9bbueLHahPG6iLgqM6+PiCnAWjXGliRJalttj8yyYYnWHdWqs9OAE+qKLUmSNBSdaN1xNHBFZs4c5NpXW3f89t4605QkaUTLniz26la1VrBk5kJgcrVB42UR8S7gg8CubVw7DZgGMOf0I7r3JyhJkpZ7pVt3vBt4PfBgtSnj+Ih4MDNfP9D1n/u32fUnWfnY+D8XiwVw8dy1i8Zj/vyi4cKiaknqfl08c1NK6dYdt2TmazJzUmZOAuYMNhiSJEmqW/HWHTXGkyRJS8Nl9+Vbd/Q5Z9A9iCRJkupm6w5Jkka4bl79VcpyMSD6xhP/WyzWl4/crlgsgGd+vKBovHylbFE1Y+wOI0nqfnUWVY+LiBsj4vaIuCsivlQdj4j4p4i4PyLuiYi/qysHSZLUhp6Cry5VvHUH8EZgIvCGzOyJiA1qzEGSJGlQdRZVJ7BE6w7gE8BHMrOnOm9WXTlIkqTBWUPUmdYdmwMfqtpyXBURW/Rz7aLWHT09L9WZpiRJGuFqHRBl5sLMnAxMAHaIiG2AlYFXMnMK8F/AOf1cOy0zp2TmlFGjVq0zTUmSRjZriIq37tgTmAH8oProMuDbg12/y4bb1JdcH2N22r5YLIBnf3RH0Xg5t3DrjrB1hySp+5Vu3XEv8ENgt+q0XYD768pBkiQNLnvKvbpV8dYdEXEdcEFEHEuj6PrwGnOQJEkaVPHWHZn5PPCXdcWVJEkaquVip2pJklSjLn6UVUptA6KIGAdcS2NV2Rjg+5l5ckTsDpxG4zHai8DBmfngQPf6/jvm1ZXmEmLrtxWLBfBs3lQ0HvMK/60fZVG1JKn7dWKn6rOAfTPznog4Cvg8cHCNeUiSpAF0c7FzKZ3YqTqBNarjawJP1JWDJElSOzqxU/XhwJURMQM4CDiln2sX7VR97kOOmSRJqo0bM3Zkp+pjgQ9k5gQamzKe3s+1i3aqPnjzjetMU5IkjXCld6p+P7BdNVMEcBHw0xI5SJKk1qwhqneV2frA/Gow1LtT9T8Da0bElpl5P7AHcM9g9xp/xjfqSnMJEbVOmi3hhYWvFI3XM7fs9zdq1bFF40mStDQ6sVP1EcAPIqIHeA44tMYcJEnSIJwh6sxO1ZfRaOoqSZLUFdypWpKkEc4ZoppXmUmSJC0Pap8hqmqIbgYez8y9ImJT4EJgHeBW4KDMHLA3x8K7/7fuNBcZM/m9xWIBvFi4qDpfWbloPFYvPObuWVg0XNiZRNKKIP0/sxK/rT7J4ivJ/hk4IzO3oFFUfViBHCRJkvpV907VE4C/BKZX7wPYDfh+dcp5wF/VmYMkSRpY9pR7dau6Z4j+FTiBVzfrXhd4PjMXVO9nAJu0urC5dcfZPyn3yEySJI08tQ2IImIvYFZm3tJ8uMWp2er65tYdh/3lzrXkKEmSBPUWVe8E7BMRHwDG0ehw/6/AWhExppolmoDd7iVJ6qjssai6zo0ZTwJOAoiIXYHjM/OjEXEJsB+NlWZTgcsHu9ePDyr3yGyf6yYXiwXw4oLCrTteWalovDFj3NlBktT9OvHb6rPAcRHxII2aorM7kIMkSapYVF2u2/01wDXV1w8DO5SIK0mS1A5bd0iSNMKlGzPaukOSJKkTrTsuAKYA84EbgY9l5vyB7nHk7BvqTnORvR7ZpVgsgDnFi6pXLxqPUf6rQ5K0qQMzAAAgAElEQVS6XTfX9pTSidYdFwBvAN4ErAIcXiAHSZKkfhVt3QGQmVdmhcYM0YQ6c5AkSQPLnij26lalW3csEhErAQcBP211YXPrjrnz/1xvlpIkaUQr3bqj2X8A12Zmy10Xm1t3rLzSGnWlKUnSiJdZ7tWtBi2qjoiVgb8FJjWfn5lfHuTSJVp3RMR3M/PAiDgZWB/4WDtJrrXyqu2cNizy1uuLxQJ4ZcG8ovEWlq3hhnAho7rTdredzu2Tj+t0GpK6RDurzC4HXgBuAea2e+N+WnccGBGHA+8Dds+0rl1SZzgYkl7VzbU9pbQzIJqQmXsOY8xvAX8EfhsRAJe2MdskSZJUm3YGRL+JiDdl5h1LG6RP6w53x5YkqYs4QzTAgCgi7gCyOueQiHiYxiOzADIzty2ToiRJUr0Gmq3Zq1gWkiRJHdTvgCgz/wgQEd/JzIOaP4uI79DYQ2hQfVt3NB3/d+CQzFxtsHtcuuqkdkINi5d+/lCxWADzehYUjbdwbuFVX7bukKSu183L4Utp57fjXzS/qQY4bx1CjL6tO4iIKcBaQ7iHJElSbfodEEXESRExG9g2Iv5cvWYDs2gsxR9Uq9Yd1YDqNBo7WEuSpA6zdccAA6LM/Fpmrg6clplrVK/VM3Pdao+hdrRq3XE0cEVmzhzowubWHT948ZE2w0mSJA1dO0vgL4mIt/Q59gLwx8zstwCmuXVHtTEjEbEx8EFg18GCZuY0YBrA7167r083JUmqSWb3ztyU0s6A6D+AtwC/p7Hk/k3A7cC6EfHxzPx5P9ct0boDuIvG0v0Hq00Zx0fEg5n5+oESeOMVR7TzvQyLa9/33WKxAOYvLFvEvWCeRdWSJPXVzm/HR4A3V41W3wpMBu4E3gOc2t9FmXlSZk7IzEnAh4H/ycy1M/M1mTmpOj5nsMGQJEmqV/aUe3WrdgZEb8jMu3rfZObdNAZID9eXliRJUjntPDK7LyLOAi6s3n8IuD8iVgbmtxOkuXVHn+OD7kEkSZLq1WMNUVszRAcDDwKfAo4FHq6OzQfeXVdikiRJpQw6Q5SZLwP/Ur36enHYM5IkSUW5yqyNAVFE7AR8EXhd8/mZuVk7Afq27ojG8rKv0Fh+vxA4KzP/bcB7jC+3qfUvVin7l6LnubI7CiyYO7povBhVeFWbJElLoZ0aorNpPCq7hcYAZqh6W3esUb0/GJhIo1i7JyI2WIp7SpKkYdLNO0iX0s4/31/IzKsyc1Zm/qn31c7NW7XuAD4BfDmzsfguM2cNOWtJkqRh1M6A6JcRcVpEvD0i3tL7avP+rVp3bA58qGrLcVVEbNHqwubWHdMvuqLNcJIkaagyy726VTuPzN5W/Tml6VgCuw10UavWHZWVgVcyc0pE/A1wDrBz3+ubW3fMvf+6Lv4RSpKk5V07q8yWdmn9Eq07IuK7wAzgB9U5lwHfHuxGT3zwS0uZwtDd2G93thXD/Plli6pX9NYdEY7VJWlFMOgjs4jYMCLOjoirqvdbR8Rhg13XT+uOA4Ef8urs0i7A/UudvSRJWmbZE8Ve3aqdGqJzgZ8BG1fv76exSePSOgX424i4A/gacPgy3EuSJGmZtVNDtF5mXhwRJwFk5oKIGNLy++bWHZn5PI2VZ5IkqQvYuqO9GaKXImJdGoXURMSOwAu1ZiVJklRQOzNExwFXAJtHxK+B9YH9as1KkiQVY+uO9laZ3RoRuwBbAQHcl5ltdbmHlq07dgdOozE79SJwcGY+ONA99n5ydrvhltlz88rF6oT58wqvMhtdOJ4kSUuh3wFRtUdQK1tGBJl5aZsx+rbuOAvYNzPviYijgM/TaOchSZI6oJs3TCxloBmivQf4LIFBB0RNrTv+icajt95rewdHawJPDJ6mJElSffodEGXmIcNw/97WHas3HTscuDIiXgb+DOzY6sKIOBI4EmCj1TdlnVXsAStJUh1cZdbeKrOl0ty6o89HxwIfyMwJNHapPr3V9Zk5LTOnZOYUB0OSJKlO7awyW1qtWnf8BHhDZt5QnXMR8NPBbvTQn2fWl2UfC3uGtMXSMhsVZUfl8xeUbt1R25hb0ghm25zh5SqzGmeIWrXuAPYF1oyILavT9qBRcC1JktQxg84QRcR44NPAazPziIjYAtgqM3881GDVLtdHAD+IiB7gOeDQod5HkiQNH1eZtTdD9G1gLvD26v0M4CtDCZKZ12TmXtXXl2XmmzJzu8zcNTMfHlLGkiRphRYRe0bEfRHxYESc2OLzlSPiourzGyJi0rLGbGdAtHlmngrMB8jMl2ls0ChJklYAPRnFXoOpNnT+JvB+YGvggIjYus9phwHPZebrgTOAf17Wn0E7A6J5EbEKr/Yy25zGjJEkSdJw2wF4MDMfzsx5wIU0apCb7QucV339fWD3iGVbpdTOKrOTaawEmxgRF9BYPXZwOzePiEeA2cBCYEFmTomIdWisLpsEPALsn5nPDXSf09bbuZ1ww+JTT/2yWCyAlUbXudBvSfOKrzJzMlGSul3JVWbN+wxWpmXmtKb3mwCPNb2fAbytz20WnVPVJ78ArAs8s7R5tdPL7OqIuJXGBooBfDIzhxLw3X3OPxH4RWaeUj0XPBH47FCSliRJy6dq8DNtgFNajc76ln23c86QDPrILCL+msbszk+qlWULIuKvliFm8zTXecCy3EuSJK1YZgATm95PYMk2X4vOiYgxNFqBPbssQdupITo5M1/ofZOZz9N4jNaOBH4eEbdUU2QAG2bmzOpeM4GW21BHxJERcXNE3PzrFx9oM5wkSRqqbiqqBm4CtoiITSNiLI29DK/oc84VwNTq6/2A/8lcts0D2ilgaTVoarfwZafMfCIiNgCujoh7202seUrtGxMPdIcESZJGgKom6GjgZ8Bo4JzMvCsivgzcnJlXAGcD34mIB2nMDH14WeO2M7C5OSJOp7EELoFjgL79yVrKzCeqP2dFxGU0KsefioiNMnNmRGwEzBrsPoed8YZ2wg2LLxxyw+AnDaOF2VM03ryewq00wtYdktTtum3WITOvBK7sc+wLTV+/AnxwOGO289vqGGAejZVhlwCvAP93sIsiYtWIWL33a+C9wJ0sPs01Fbh86GlLkiQNn3ZWmb1EYyXYUG0IXFZtCzAG+O/M/GlE3ARcHBGHAY8yzCM8SZI0NG3W9qzQ2ulltiVwPI19gxadn5m7DXRd1ZJjuxbH/wTsPtREJUmS6tJODdElwLeA6TQ2WJQkSSuQkhszdqt2BkQLMvOs2jMZwJh3fahYrEmr/bRYLIDH5yz1pppLZV66U7UkSX21MyD6UUQcBVxGUw+zzBx0A6R+WnecBuxNo1D7IeCQam8jSZLUAWXXO3endgZEvSvCPtN0LIHN2ozRt3XH1cBJ1T4D/wychK07JElSB7WzymzT4QyYmT9vens9jR0mJUlSh2TL1mAjSzu9zMZHxOcjYlr1fouI2KvN+7dq3dHsUOCqfuIuat0x/fwL2wwnSZI0dO08Mvs2jZ2p31G9n0Fj5dmP27h2idYdmXktQER8DlgAXNDqwubWHfNnPdBtm2hKkrTC6PG3bFsDos0z80MRcQBAZr4c1W6Lg+mndce1ETEV2AvYvZ1mbK989bh2wg2LySu/plgsgOfmzS4ab27hadEYZesOSVL3a2dANC8iVqFqdRIRm9O02qw/VbuOUZk5u6l1x5cjYk8aRdS7ZOacpU9dkiQNhx5riNoaEJ0M/BSYGBEXADsBB7dxXX+tOx4EVqbxCA3g+sz8+FLkLkmSNCzaWWV2dUTcCuwIBPDJPsvo+7uuv9Ydr1+aRCVJkurSTi+zd1Vf9ha7bB0R9BZHS5Kk5ZvL7tt7ZNa8IeM4GoXRtwADNneF1jtVN312PHAasP5gM06HXlauMHfvBeOKxQK4ccwqRePNi8JFzrbukCQtB9p5ZLZ38/uImAicOoQYfXeq7r3HHsCjQ7iPJEmqga072tiYsYUZwDbLGPcM4ASqlWuSJEmd1E4N0b/z6sBlFDAZuL3N+/fuVJ3Af2bmtIjYB3g8M28faDujamfrIwHess62bLbapDZDSpKkobCGqL0aopubvl4AfC8zf93m/ZfYqRr4HI09iQbUvFP1B1+3rzNJkiSpNu3UEJ23tDdvsVP1LsCmQO/s0ATg1ojYITOfXNo4kiRp6VlD1N4jsztoXesTQGbmtv1c13Kn6szcoOmcR4Apg60yu2zmzQN9PKz+eau/KBYL4D/+VHZV29wsPC1aelVbYaPCyUtJWhG088istxv9d6o/PwrMAQabOWq5U/XSJClJkurjDFF7A6KdMnOnpvcnRsSvM/PLA13U307Vfc6Z1EZ8SZKkWrXzPGPViHhn75uIeAewan0pSZKkkpIo9upW7cwQHQacExFr0qglegE4tNasJEmSCmpnldktwHYRsQYQmflCuzfvr3VHRBwDHE1jGf9PMvOEge5zwEZvazfkMttgz7JFsmteOLpovLk9hUfnpVt3pE/CJWmoSv9q6EbtrDLbEPgqsHFmvj8itgbenplntxljsdYdEfFuYF9g28ycW+1RJEmS1DHt1BCdC/wM2Lh6fz/wqWWI+QnglMycC409ipbhXpIkaRn1EMVe3aqdAdF6mXkx1aq8zFxA4xFYO3pbd9xSteIA2BLYOSJuiIhfRcT2rS6MiCMj4uaIuPmBF//QZjhJkqSha6eo+qWIWJdqc8aI2JFGYXU7WrXuGAOsDewIbA9cHBGbZeZixTvNrTsOet3fuPudJEmqTTsDouOAK4DNI+LXwPrAfu3cvEXrjh2AGcCl1QDoxojoAdYDnl6K/CVJ0jJy1qG9VWa3RsQuwFY02nXcl5nzB7uuv9YdwIvAbsA1EbElMBYYsHXHWR8p98xx9PZTisUCWOviG4vGm1v6b/3osqvoJElaGu2sMvsg8NPMvCsiPg+8JSK+kpm3DnJpy9YdETGWxr5GdwLzgKl9H5dJkqRy3LCkvUdm/5CZl1S7Vb8P+DpwFjDg5kD9te7IzHnAgUuRqyRJUi3aWWXWu6LsL4GzMvNyGo+5JEnSCqAnotirW7UzIHo8Iv4T2B+4MiJWbvM6SZKk5UI7j8z2B/YEvp6Zz0fERsBn2rl5q9YdETEZ+BYwjkbrjqMyc8DK4pU/fVo74YZFz5MPFYsFsE7cVjTe3NKD81GOnSWp21nI294qsznApU3vZwIzhxBjsdYdwKnAlzLzqoj4QPV+1yHcT5IkaVi1M0M03BJYo/p6TeCJDuQgSZIqrjKrvxaoVeuOTwGnRcRjNFasndTqwubWHdPP/17NaUqSpJGs7hmiVq079gOOzcwfRMT+wNnAe/pe2Ny6Y/4zD/t4U5KkmvR07+KvYmodEPXTumMq8MnqlEuA6YPdZ8HPvl1bjn2NeU/ZLZLWLfzU0qJqqWG7207n9snHdToNSV2itt9WEbFqRKze+zWN1h130qgZ2qU6bTfggbpykKT+OBiSXtVDFHt1qzqnJ/pr3fEicGZEjAFeAY4c4B6SJEm1q21ANEDrjuuAt9YVV5IkDY2Fuu44LUmS5IBIkiSp1iVOEbEWjVVk29CYkTsUuA+4CJgEPALsn5nPDXSff//7P9SZ5mKOfd9KxWIBrN9Tdkw6p/gqs+4toJMkNbjsvv4ZojOBn2bmG2jUE90DnAj8IjO3AH5RvZckSeqYOpfdrwG8i8bGi2TmvMx8HtgXOK867Tzgr+rKQZIkDa6n4Ktb1TlDtBnwNPDtiPhdREyv9iPasGoQ29sodoNWFze37rjhRbcqkiRJ9alzQDQGeAtwVma+GXiJITwey8xpmTklM6e8bbUt6spRkqQRLwu+ulWdRdUzgBmZeUP1/vs0BkRPRcRGmTkzIjYCZg12oy88dW2NaS7uk88+USwWwHoLiobjoZUK/3UMFzJKkrpfbb+tMvNJ4LGI2Ko6tDtwN3AFjX5mVH9eXlcOkiRpcD1R7tWt6u4segxwQUSMBR4GDqExCLs4Ig4DHgU+WHMOkiRJA6q72/1twJQWH+1eZ1xJktS+bl79VYoFHpIkacSr+5GZJEnqcs4QdaZ1x98AewPzgIeAQ6oNG/u19dqvrTPNxfT84bZisQA2WDi/aLy7x44uGo9RTkJKkrpfJ1p3XA1sk5nbAvcDJ9WcgyRJGkBGuVe3Kt66IzN/npm9u+9cD0yoKwdJkqR2dKJ1R7NDgataXdzcuuOZOU/WmKYkSSObvcw62LojIj4HLAAuaHVxc+uO9ca/psY0JUnSSNeJ1h1ExFRgL2D3zBy0l8SPJo2tLcm+em66vlgsgPVWfqVovLmMLxovRnXxA+NhEKO6uTOPJKldtQ2IMvPJiHgsIrbKzPuoWndExJ7AZ4FdMnNOXfElSVJ7uvlRVimdaN1xE7AycHVEAFyfmR+vOQ9JkqR+daJ1x+vrjClJkobGh/+27pAkSbJ1hyRJI13Pir3+pS3FW3dk5m+rz44HTgPWz8xnBrrPet/9ap1pLubZqWU3zl5zzZWKxps3e1zReISTkJKk7lf3DFFv6479qsLq8QARMRHYA3i05viSJGkQrjLrQOuO6uMzgBOwjkuSJHWB4q07ImIf4PHMvH2gi5tbd0y/8Ic1pilJ0shm6456H5n1tu44JjNviIgzgS/SmDV672AXZ+Y0YBrA3IeudyZJkiTVpnTrji8CmwK3V5syTgBujYgdMrPfDq757OM1prm4Gx7cqFgsgHf8RbnvDWD+7MJjy1EWVUtSt3PWocZHZtUA57GI2Ko6tDtwa2ZukJmTMnMSjUHTWwYaDEmSJNWtE607JElSF3Efos607mj+fFKd8SVJktrhTtWSJI1w3bz6q5TlYkB06z7/XSzWBgEXrVxu9+hdXzO6WCyAuQ8V/mtvUbW61Ha3nc7tk48rFu/2ycex3W2nF4snaWhq/W0VEWtFxPcj4t6IuCci3l4dPyYi7ouIuyLi1DpzGKqSgyFJnVNyMAQ4GJK6XPHWHRHxbmBfYNvMnBsRG9ScgyRJGoDL7mscEDW17jgYGq07gHkR8QnglMycWx2fVVcOkiRJ7SjeugPYEtg5Im6IiF9FxPatLm5u3XH5nD/UmKYkSSNbD1ns1a3qHBD1tu44KzPfDLwEnFgdXxvYEfgMcHFU21Y3y8xpmTklM6fsO37TGtOUJEkjXenWHSdWxy/NzARujIgeYD0as0kt7T/3vhrTXNzrRpUtaRqz4WpF483PwqvMlhzrSpK6jMvuy7fuuBv4IbAbQERsCYwFnqkrD0mSpMF0onXHS8A5EXEnMA+YWs0WSZKkDvCXcOdadxxYZ1xJkqShWC52qpYkSfWxhmg5GRDNXTi/WKwHX3yiWCyAWP9tRePN44Wi8WzdIUlaHtQ6IIqItYDpwDY0HlEeCrwMfAsYBywAjsrMG+vMQ5Ik9a/HBcHlW3cAFwNfysyrIuIDwKnArjXnIUmS1K9OtO5IYI3qtDWBss+oJEnSYrp5B+lS6pwham7dsR1wC/BJ4FPAzyLi6zT2QXpHq4sj4kjgSIDVxm3AuLFr1ZiqJEkayTrRuuMTwLGZORE4Fji71cXNrTscDEmSVJ8s+OpWnWjd8U4aM0UAl9Aouh7QuePeUkuCrfzVc9cWiwUQ665TNN58nisajyi8yqzHxaOSpKHrROuOJ4BdqmO7AQ/UlYMkSVI7OtG643LgzIgYA7xCVSckSZI6w7n1zrTuuA54a51xJUnSiiki1gEuAiYBjwD7Z2bLepBqxfs9wGWZefRA93UbYUmSRrgesthrGJwI/CIztwB+Ub3vzz8Cv2rnpnXuQ7QVjRFcr82ALwDn0+bIrtdul7yvniRbeU/houq11i4ab34Wnhi1dYckaXjty6sbOp8HXAN8tu9JEfFWYEPgp7RuNL+YOouq78vMyZk5mcYjsjnAZQxtZCdJkmpWctl9RBwZETc3vYZaS7xhZs4EqP7coO8JETEK+BfgM+3etFRz192BhzLzjxHR1shOkiSteDJzGjBtoHMi4v8Br2nx0efaDHMUcGVmPhbRXqO2UgOiDwPfq75ebGQXEUuM7GDxnar//dNTOWyfXUvkKUnSiNNtq8wy8z39fRYRT0XERtUYYiNgVovT3g7sHBFHAasBYyPixczs96lU7QOiasn9PsBJQ7mueQT58rXndvPmlpIkqZwrgKnAKdWfl/c9ITM/2vt1RBwMTBloMARlVpm9H7g1M5+q3j9VjegYYGQnSZIKWc5WmZ0C7BERDwB7VO+JiCkRMWj3i/6UeGR2AK8+LoM2RnZ9jd70zfVk1sJaq6xWLBYAa5Zt3bEgFxaNt6KvMmvz0bQkaZhk5p9o1Cb3PX4zcHiL4+cC5w5231p/W0XEeBqjt0ubDrcc2UmSpM6wuWv9O1XPAdbtc6zlyE6SJKlTSq0ykyRJXarbVpl1wopd4CFJktSGTrTu2ATYG5gHPAQckpnPD3Sv2Uf9XV1pLmHTVVvtA1WfWK1s6455pYuqrTqWpK6XXV3dU0YnWndcDWyTmdsC9zPE/YkkSZKGW6lHZotad2TmzzNzQXX8emBCoRwkSZJaKjUgam7d0exQ4KpWFzQ3fzvvjzNrTU6SpJGsp+CrW9U+IGpq3XFJn+OfAxYAF7S6LjOnZeaUzJwy9XUb1Z2mJEkawUosu+/buoOImArsBeyemVZySZLUQcPUUmO5Vrx1R0TsCXwW2KXauHFQf31rue2Spoxdd/CThtOqaxYNN9/WHZIkLaHWkUZT646PNR3+BrAycHU0lmRfn5kfrzMPSZLUP+eHOtO64/V1xpQkSRoqW3dIkjTCWUNk6w5JkqTyrTsy81+rz48HTgPWz8xnBrrXb5++t640l3DMursWiwUQ49cqGm9+6V0gLKqWpK7XzfsDlVLbgCgz7wMmA0TEaOBxGq07iIiJNIqtH60rviRJUruKt+6o3p8BnICF7ZIkdVwW/E+3Kt66IyL2AR7PzNsHuqC5dUdPz0slcpQkSSNU7avMmlp3nFTtS/Q54L2DXZeZ04BpACuN3aR7h5SSJC3nrCEq3LojIt4EbArcXm3KOAG4NSJ2yMwn+7vB8RvvUiDNhh3X7zeNWsTK44vGW5iF/9qHRdWSpO5XtHVHZt4BbND7QUQ8AkwZbJWZJEmqTzfX9pRS6z/fm1p3XFpnHEmSpGVRvHVHn88n1RlfkiSpHbbukCRphLOo2tYdkiRJnWndERHHAEcDC4CfZOYJA93rHz7b71O3YZczC4+TV1q5aLgFubBoPFt3SFL360mLqou37oiIdwP7Attm5tyI2GCA20iSJNWuVA3RotYdEXEacEpmzgXIzFmFcpAkSS04P9SB1h3AlsDOEXFDRPwqIrZvdUFz645zrruzUJqSJGkkKtq6oynm2sCOwPbAxRGxWebiDzCbW3fMOesYB6+SJNWkxzmisq07qvczgEurAdCNEdEDrAc83d8NVvrgsfVnWVlw/Q+LxQKIMWOLxiteVG3rDknScqDEb6tFrTsqPwR2A4iILYGxgK07JEnqkCz4n27VidYd5wCbRcSdwIXA1L6PyyRJkkoq3rojM+cBB9YZV5Iktc+dqt2pWpIkyV5mkiSNdK4y60DrDuAa4FvAOBqtO47KzBsHutf8b3+lpiyXNHrvqcViATBqdNFwC7PwxKitOyRJy4HirTuA/wK+lJlXRcQHgFOBXevKQ5IkDaybV3+VUuqf74tad9DYIXyN6viawBOFcpAkSWqpE607PgWcFhGPAV/n1R2sF7NY647r7yuUpiRJGolqHxA1te64pDr0CeDYzJwIHAuc3eq6zJyWmVMyc8qhO25Vd5qSJI1YPQVf3aoTrTumAp+svr4EmD7YDU785ks1pbakf5m6cbFYnTC/p3DrjhVcjFqxn7uPihX7+5OkXiUGRH1bdzwB7EJjtdluwAMFcpAkSf2wYUTNA6Km1h0fazp8BHBmRIwBXgGOrDMHSZKkwXSidcd1wFvrjCtJktrnxoy27pD+f3v3Hm1lVa9x/PsAXhBNRQUvUKhhWghkW45pogfMzEylo6Vphyw1z8hEOo3UYeeYXTVNs2NZiqajzDIvSZqEx+MlK1REEBQVKjOUQE00EgHZv/PH+y5cbBb7onvOtfZez4exxl63933m2uy91tzzne/8mZmZuXSHmZlZs2vks79yST2HaDJwIsVijHOBE4AdgJ8BA4FZwCciYlV7+/n+s/elbOY6vp0tqZT5rK/spTuUdxAycr8+MzPrFZJ9WknaCTgNaImIEUBfigUazwcujojhwIvAp1O1wczMzDoWGf81qtR/vvcD+pdnlG0GLKY41f6G8vFrgCMTt8HMzMysXSmLuz4j6ULgaWAFMB14CFgWEa+VT1sE7FRre0knU56Sr75b0qfPgFRNNTMza2o+yyztIbOtgSOAnYEdgQEUq1a3VfN/obp0hztDZmZmllLKSdUHAX+OiOcAJN0E7AtsJalfOUo0hE5Uux8/eGTCZq6r9YVF2bIA+my1fda819YOzmXSxys7mJk1Oq9UnXYO0dPAPpI2kyRgPPAYcBdwVPmcicAtCdtgZmZm1qFkHaKIuJ9i8vQsilPu+wCXA2cAn5e0kGIV65rV7s3MzCwPV7tPX7rjHOCcNnf/CRiTMtfMzMysK7xStZmZWZNr5PWBcukRHaLrD2x3Ietu1brgoWxZABo1Lmte9pWqPanaGtSo2RcxZ/Tn690MM2sQST+tJE2W9KikeZKuk7SppGslPVHed5WkjVK2wcysFneGzKxaPUp3XAvsDuwJ9KeodWZmZmZ10kpkuzSq1IfMKqU7VlOU7ng2IqZXHpT0AMVaRGZmZmZ1k/K0+2eASumOxcBLbTpDGwGfAKbV2l7SyZJmSpp59YJnUjXTzMys6UVEtkujylq6Q9LxVU/5PnBvRPy21vbVpTs+ObxmuTMzMzOzblGP0h0/kXQOsB3wmc7sqP/5303WyLZWf+/L2Zx0u5EAABRISURBVLIA+uy+T9a8Na2ZzzKTzzIzM2t0jTy3J5eUHaK1pTsoqt2PB2ZKOhH4ADA+Ivc54GZmZmbrS9Yhioj7JVVKd7wGPExRuuOfwF+APxQlzrgpIr6Sqh1mZmbWPi/MWJ/SHT1iMUgzMzNrHu6cmJmZNbnWBj77K5ce0SFaM/eubFnP3/5itiyAwR99OWteq0t3mJmZrSd76Y6qx/5H0vKU+WZmZtaxyHhpVPUo3YGkFmCrVNlmZmZmXZG9dIekvsAFwMeBCYnzzczMrANeh6g+pTtOBaZGxOL2tq8u3XHlr3+XqplmZmZm6UaI2pTuWAb8QtK/A0cDB3a0fURcTrFuESt+c6m7rmZmZol4hCh/6Y5zgf7AwnJRxs0kLYyIt7e3o1+e8IeEzWxrcMYsmPDKS1nz1uQ+y8ylO8zMrAdI+Wm1tnSHit7PeOCiiNg+IoZFxDDglY46Q2ZmZmap1aN0h5mZmTWQ8MKMdSndUf345inzzczMzDqjR6xUbWZmZul4UnXiDpGkycCJFItTzgVOAFYCX6M422wNcFlEfLe9/Zzy8oyUzVzHMdvulS0L4Mh/5C0Vkr1ejUt3mJlZD5DytPvKStXvjIgVkq6nWKlawFBg94holTQoVRvMzMysY+ERovwrVVOMDn08ojj/OyKWJm6DmZmZWbvqsVL1rsDHylWob5c0vNb21StVr1qdtyK8mZlZM4mIbJdGlbK4a/VK1TsCAyQdD2wCvBoRLcAVwFW1to+IyyOiJSJaNt7oLamaaWZmZpZ9pep9gUXAjeVzbgZ+lLANZmZm1gGfZZa2Q7R2pWpgBcVK1TOBl4FxFCNDBwBPdrSjbTbNN0I0a9WSbFkALHs+a1z20h29nOQ3ETOz3qAeK1X3B64tT8lfTnFavpmZmdVJI8/tyaUeK1WvBD6UMtfMzMysK7xStZmZWZPzHKK01e7NzMzMeoR6lO7YD7iAojO2HPhkRCxsbz+/3HxIymauY9zfn8iWBRDL8pbuyH6cWO5zm5k1Oq9UnXYdokrpjpaIGAH0pSjdcRlwXESMBn4KfClVG8zMzMw6I/Wf75XSHf14vXRHAJXz6Lcs7zMzMzOrm5Sn3T8jqVK6YwUwPSKmSzoR+LWkFRRrEu1Ta3tJJwMnA/zXwD05aou3pWqqmZlZU2v1afd1Kd0xGTg0IoZQrFJ9Ua3tq0t3uDNkZmZmKeUu3bEfMCoi7i+f83NgWsI2mJmZWQc8qbo+pTuOlrRbRDwJvB+Y39GO3jH11ITNXNdLLZ/KlgXAi8uyxmUv3dEn81lmrS5NYmZmXVeP0h2LgBsltQIvApl7IGZmZlbNc4jqU7rj5vJiZmZm1iWSBlJMuRkGPAV8NCLWW9RP0rcoSoX1Ae4AJkU7i/F51TwzM7MmFxn/dYMzgTsjYjhwZ3l7HZL2pZi3PBIYAewNHNDeTt0hMjMzs57kCOCa8vo1wJE1nhPApsDGwCbARsCS9naaunTHJOAkQMAVEfGdzg51rWPjTVM2cx2SsmUBtD7397x5mY8TS32z5pmZWdfl/GyoXmewdHlEXN6FXQyOiMUAEbFY0qC2T4iIP0i6C1hM0Qe5NCLaPYkrWYdI0giKztAYYBUwTdJt5X13RsR5ks6kGOo6I1U7zMzMrHGUnZ92O0CS/hfYvsZDZ3cmQ9LbgT2ASjHUOySNjYh7N7RNyhGiPYAZEfFK2bh7gAkUQ10Hls+5Brgbd4jMzMzqptHWIYqIgzb0mKQlknYoR4d2AJbWeNoEij7I8nKb2ykqY2ywQ5RyDtE8YKykbcq1iA4FhtJmqAtYb6gLiiE1STMlzZxy/a8SNtPMzMx6kKnAxPL6ROCWGs95GjhAUj9JG1FMqK7PIbOImC/pfIpT3ZYDcyjWI+rs9muH1FY+fk9jdV3NzMx6kR62DtF5wPWSPk3R8TkaQFILcEpEnAjcAIwD5lJMsJ4WEe2OrqReh+hK4Mqyod+gWJSxM0Nd61h01DdSNnMdA/tvkS0LYM2S5Vnz2lmCIY3cK1WbmVmvFhEvUFS/aHv/TODE8voa4DNd2W/ST6vKzG9JbwU+AlxH54a6zMzMLJMetg5REklHiChKdGwDrAY+GxEvSqo51GVmZmZWL6kPme1f476aQ11mZmZm9ZJ6hMjMzMwaXERrvZtQd57xamZmZk2vHqU7LgA+TLF69R+BEyJiWXv7Ofy5dh/uVsMH7JgtC2DV3zq9EkG3aOQJbWZmVh+t/mxIN0LUpnTHKOAwScMp1iUaEREjgSeBs1K1wczMzKwzUh4yW1u6IyJeA+4BJkTE9PI2wAxerzNiZmZmdRAR2S6Nqh6lO6p9Cri91sbVpTteXNHh2o1mZmZmb1jdSndIOru8fe0Gtl9buuNdg/+lcbuUZmZmPZznENWndAeSJgKHAeOjE+NnT/1jScpmruPgQTtnywJYvvSFrHku3WFmZra+1GeZDYqIpVWlO94r6RDgDOCAiHglZb6ZmZl1rJHn9uRSj9IdlwKbAHdIgmLi9SmJ22FmZma2QfUo3fH2lJlmZmbWNa0eIfJK1WZmZmauZWZmZtbkXMWgDqU7qh77AnABsF1EPN/efr69zftSNnMdO726JlsWwEvRP2te9olz6t2DkH3kNxEzs94gWYeoTemOVcA0SbdFxAJJQ4H3A0+nyjczM7PO8VlmdSjdUT52MfBF8BidmZmZ1V/20h2SDgeeiYg57W1cXbrjt8sXJGymmZmZNbt6lO44Gzi4E9uvLd3xg6HHeyTJzMwsEZfuyF+6YwlwHDCnXJRxCDBL0piI+NuG9jPxuyNSNnMdL108LVsWwKNPDM6al51Ld5iZWQ+QvXRHRFxS9fhTQEtHZ5mZmZlZOp5UXYfSHYnzzMzMzLose+mONo8PS5lvZmZmHXPpDpfuMDMzM3PpDjMzs2bnOUR1Kt0h6XPAqRSn4d8WEV9st5H7Tmjv4W61xWOPZcsCWLowb6kQ/8ibmZmtL3vpDopT7Y8ARkbESkmDUrXBzMzMOuZ1iNKOEK0t3QEgqVK6owU4LyJWAkTE0oRtMDMzM+tQ9tIdwG7A/pLul3SPpL1rbVxdumPKj3+esJlmZmbNLSKyXRpVPUp39AO2BvYB9gaul7RLtPkuVZfuWL3kicb9DpqZmVmPl7t0xyKKQ2k3lR2gByS1AtsCz21oP69+dXLKZq6j3+GHZcsCeL7v77PmZSev7GBm1ui8DlEdSncArcA44G5JuwEbAy7dYWZmZnWTvXSHpKuAqyTNozj7bGLbw2VmZmaWT/gss/ylOyJiFXB8ylwzMzOzrvAEDzMzM2t6PaJ0x8Rf5WvmdZNGZ8sCeK7v77LmZdenb968aM2bZz3WqNkXMWf05+vdDLOG4EnViUeIJE2SNE/So5JOL+8bLWmGpNnlOkNjUrbBzKwWd4bMrFo9Snd8Czg3Im6XdGh5+8BU7TAzM7P2+dym+pTuCOAt5XO2BJ5N2AYzMzOzDqXsEM0Dvl6edr+ConTHTOB04DeSLqQ4ZLdvrY0lnQycDDB64Eh23vxtCZtqZmbWvHzafcI5RBExH6iU7pjG66U7/gOYHBFDgcmUK1nX2P7yiGiJiBZ3hszMzCylepTu+CYwqXzKL4ApHe1n6uKHUjVxPX223j5bFsDzrM6al51Ld5iZNTzPIUp/ltmg8muldMd1FHOGDiifMg5YkLINZmZmZh2pR+mOk4BLJPUDXqWcJ2RmZmb14RGi+pTuuA94T8pcMzMzs67oEStVm5mZWToeH3ItMzMzM7PiuGFvvQAnO895jZblPOc5r3nycr82X974pbePEOWesO28npvXm1+b85znvPrl+cShHqK3d4jMzMzMOuQOkZmZmTW93t4hutx5zmvALOc5z3nNk5f7tdkbpHLSl5mZmVnT6u0jRGZmZmYdcofIzMzMml6v7BBJOkTSE5IWSjozQ95VkpZKmpcha6ikuyTNl/SopEmJ8zaV9ICkOWXeuSnzqnL7SnpY0q0Zsp6SNFfSbEkzM+RtJekGSY+X/4/vTZj1jvJ1VS4vSzo9VV6ZObn8WZkn6TpJmybMmlTmPJrqddX6/ZY0UNIdkhaUX7dOnHd0+RpbJbUkzrqg/Nl8RNLNkrZKnPfVMmu2pOmSdkyZV/XYFySFpG1T5kn6sqRnqn4HD+2uPOteva5DJKkv8D3gg8A7gWMlvTNx7NXAIYkzKl4D/jMi9gD2AT6b+PWtBMZFxChgNHCIpH0S5lVMAuZnyKn414gYHRHd9mHTjkuAaRGxOzCKhK8zIp4oX9doihqCrwA3p8qTtBNwGtASESOAvsAxibJGACcBYyi+j4dJGp4g6mrW//0+E7gzIoYDd5a3U+bNAz4C3NuNORvKugMYEREjgSeBsxLnXRARI8uf0VuB/06ch6ShwPuBp7sxa4N5wMWV38OI+HU3Z1o36XUdIoo3x4UR8aeIWAX8DDgiZWBE3Av8PWVGVdbiiJhVXv8HxYfpTgnzIiKWlzc3Ki9JZ+JLGgJ8CJiSMqceJL0FGAtcCRARqyJiWab48cAfI+IviXP6Af0l9QM2A55NlLMHMCMiXomI14B7gAndHbKB3+8jgGvK69cAR6bMi4j5EfFEd2V0kDW9/H4CzACGJM57uermALrx/aWd9+aLgS92Z1YHedYD9MYO0U7AX6tuLyJhh6GeJA0D3g3cnzinr6TZwFLgjohImgd8h+LNqjVxTkUA0yU9JCn1qrK7AM8BPyoPCU6RNCBxZsUxwHUpAyLiGeBCir+8FwMvRcT0RHHzgLGStpG0GXAoMDRRVluDI2IxFH+kAIMy5eb2KeD21CGSvi7pr8BxdO8IUa2sw4FnImJOypw2Ti0PC17VnYdXrXv1xg6RatzX69YWkLQ5cCNwepu/sLpdRKwph7OHAGPKQxVJSDoMWBoRD6XKqGG/iNiL4jDrZyWNTZjVD9gLuCwi3g38k+493FKTpI2Bw4FfJM7ZmmL0ZGdgR2CApONTZEXEfOB8ikM804A5FIeUrRtIOpvi+3lt6qyIODsihpZZp6bKKTvOZ5O409XGZcCuFFMOFgPfzphtXdAbO0SLWPevxCGkG7KvC0kbUXSGro2Im3Lllod27ibtfKn9gMMlPUVxuHOcpJ8kzCMini2/LqWYXzMmYdwiYFHVKNsNFB2k1D4IzIqIJYlzDgL+HBHPRcRq4CZg31RhEXFlROwVEWMpDlUsSJXVxhJJOwCUX5dmys1C0kTgMOC4yLtY3U+Bf0u4/10pOutzyveYIcAsSdunCoyIJeUfla3AFaR9f7E3oTd2iB4Ehkvaufyr+Bhgap3b1G0kiWL+yfyIuChD3naVs0wk9af4wHs8VV5EnBURQyJiGMX/3f9FRJIRBgBJAyRtUbkOHExxKCaJiPgb8FdJ7yjvGg88liqvyrEkPlxWehrYR9Jm5c/qeBJOGpc0qPz6VopJxzleIxTvKRPL6xOBWzLlJifpEOAM4PCIeCVDXvVE+MNJ+/4yNyIGRcSw8j1mEbBX+XuZRKXjXJpAwvcXe5MqZe9704ViLsGTwB+BszPkXUcxFLqa4hfs0wmz3kdxCPARYHZ5OTRh3kjg4TJvHvDfGf8fDwRuTZyxC8WhljnAo5l+XkYDM8vv6S+BrRPnbQa8AGyZ6f/tXIoPtXnAj4FNEmb9lqJDOQcYnyhjvd9vYBuKs8sWlF8HJs6bUF5fCSwBfpMwayHFPMzK+8sPEr+2G8uflUeAXwE7pcxr8/hTwLaJX9+Pgbnl65sK7JDi59SXN39x6Q4zMzNrer3xkJmZmZlZl7hDZGZmZk3PHSIzMzNreu4QmZmZWdNzh8jMzMyanjtEZplIGlar6nb52FckHVTj/gMl3bqBbZ7qzkrdtfYr6ffdvf9OtmFKhqLMZmZr9at3A8wMIiJnKYFOi4hkq0x3kHtiPXLNrHl5hMgsr76SrpD0qKTp5erfSLpa0lHl9UMkPS7pPorVlynv36bc5mFJP6Sqbp+k4yU9IGm2pB9K6lvev7wsnDlH0gxJg9s2qIP9Li+/HijpHknXS3pS0nmSjisz50ratXzedpJulPRgedmvvP/LZWHLuyX9SdJp5f0DJN1Wtm+epI+V998tqaW8fmyZMU/S+dVt6+i1mZl1ljtEZnkNB74XEe8CltGmbpOkTSnqHX0Y2B+orrF0DnBfFEVhpwJvLbfZA/gYRZHa0cAaiqrhAAOAGRExCrgXOKlGm2rut4ZRwCRgT+ATwG4RMQaYAnyufM4lwMURsXf52qZUbb878AGKWk7nlDX5DgGejYhRETGCokhr9fdjR4oCruMoVvjeW9KRXXhtZmad4g6RWV5/jojZ5fWHgGFtHt+9fM6CKJaRry5sO7ZyOyJuA14s7x8PvAd4UNLs8vYu5WOrgMocpFp57e23rQcjYnFErKQoizO9vH9u1X4PAi4t2zEVeEulVhxwW0SsjIjnKYqhDi63PUjS+ZL2j4iX2mTuDdwdRbHYSuX1sV14bWZmneI5RGZ5ray6vgboX+M57dXTqfWYgGsi4qwaj62O1+vzrGHDv/OdqeFT3fbWqtutVfvtA7w3Ilas00Cp7fZrgH4R8aSk91DUH/ympOkR8ZXqTdtpT2dfm5lZhzxCZNZYHgd2rszJoahSX3Ev5aEwSR8Eti7vvxM4qqry+0BJb+tC5ob2+0ZMB06t3JA0ur0nl4fEXomInwAXAnu1ecr9wAGSti3nRR0L3PMm2mdmVpM7RGYNJCJeBU4GbisnVf+l6uFzgbGSZgEHA0+X2zwGfAmYLukR4A5ghy7E1tzvG3Qa0CLpEUmPAad08Pw9gQfKQ2xnA1+rfjAiFgNnAXdRVLSfFRG3vIn2mZnV5Gr3ZmZm1vQ8QmRmZmZNzx0iMzMza3ruEJmZmVnTc4fIzMzMmp47RGZmZtb03CEyMzOzpucOkZmZmTW9/wfaSBN5JS8YMAAAAABJRU5ErkJggg==%0A)
+       ![image-20210318183903849](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183903.png)
 
        可以发现，周期变化随着序号变大，会越来越慢。
 
-       ![image-20210317144418899](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210317144418899.png)
+       ![image-20210317144418899](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183911.png)
 
        这就可以让模型依据纹理的变化学习到位置信息。
 
   2. 多头注意力机制
 
-     ![img](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\attention_0.jpg)
+     ![img](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183915.jpg)
 
      QK<sup>T</sup> 点积，计算出两个向量的相似度，也就是
 
-     ![image-20210317145839324](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210317145839324.png)
+     ![image-20210317145839324](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183924.png)
 
      如果两个词的意思相似，那么点积就大。
 
@@ -368,7 +366,7 @@ TRM模型：
 
      之后得到已经归一化的注意力机制方形矩阵，需要用V加权。V是字向量经过线性变换。目前还没动过。
 
-     ![image-20210317163902340](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210317163902340.png)
+     ![image-20210317163902340](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183938.png)
 
      左边的行代表当前词和本句所有的词之间的相关性，右边矩阵V的每行是当前这个字的数学表达。
 
@@ -378,7 +376,7 @@ TRM模型：
 
      残差连接的目的是反向求导的时候，能直接到X而不必要过注意力机制块。
 
-     ![image-20210317170027021](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210317170027021.png)
+     ![image-20210317170027021](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318183947.png)
 
   4. 前馈网络
 
@@ -386,9 +384,9 @@ TRM模型：
 
   整体结构：
 
-  ![image-20210318172556906](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210318172556906.png)
+  ![image-20210318172556906](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318184003.png)
 
-  ![image-20210318174202028](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210318174202028.png)
+  ![image-20210318174202028](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318184019.png)
 
   QKV都是输入X经过线性变换得到的矩阵，形状一样。Q和K的转置相乘含义： Q每行是每个词的字向量表示，K的转置的每列是每个字的字向量表示，通过点积也就是矩阵乘法，得到的是每个字之间的相关度。 因为QKV是由经过加上编码矩阵和X的和求线性运算得到的，因此同时也考虑到了位置信息。如果单把位置矩阵拿出来（不加 X）将会得到主对角线最大值的方阵，也就是位置矩阵。
 
@@ -398,7 +396,7 @@ TRM模型：
 
 第二部分:
 
-![image-20210317215719564](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210317215719564.png)
+![image-20210317215719564](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318184028.png)
 
 1. 位置编码 sin cos线性变换函数，两个字越近向关联度越大。这也符合基础假设：越近越相关。
 
@@ -408,7 +406,7 @@ TRM模型：
 
 2.  Bidirectional Encoder Representations from Transformers, 如果翻译过来也就是**双向transformer编码表达** 
 
-   ![img](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\bidirectional.png)
+   ![img](https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318184034.png)
 
    每层的TRM能拿到所有输入的信息，这就是双向。
 
