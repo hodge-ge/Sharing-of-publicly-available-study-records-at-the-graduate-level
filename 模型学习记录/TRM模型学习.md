@@ -4,6 +4,8 @@ https://zhuanlan.zhihu.com/p/352002029
 
 https://zhuanlan.zhihu.com/p/149799951
 
+https://www.bilibili.com/video/BV1Di4y1c7Zm
+
 本记录包含内容：
 
 - 位置编码
@@ -388,6 +390,10 @@ TRM模型：
 
   ![image-20210318174202028](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\image-20210318174202028.png)
 
+  QKV都是输入X经过线性变换得到的矩阵，形状一样。Q和K的转置相乘含义： Q每行是每个词的字向量表示，K的转置的每列是每个字的字向量表示，通过点积也就是矩阵乘法，得到的是每个字之间的相关度。 因为QKV是由经过加上编码矩阵和X的和求线性运算得到的，因此同时也考虑到了位置信息。如果单把位置矩阵拿出来（不加 X）将会得到主对角线最大值的方阵，也就是位置矩阵。
+
+  经过计算得到了每个字之间的相关度，得到注意力方阵。之后将注意力方阵乘以V得到和V形状一样的隐藏矩阵。相乘的含义是：注意力矩阵是当前词和当前词的所在句所有词的相关度，乘以每个词的词向量表示的第一维度，将信息融入到词向量表示中。
+
 - 解码器
 
 第二部分:
@@ -404,7 +410,17 @@ TRM模型：
 
    ![img](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\TRM模型学习.assets\bidirectional.png)
 
-   
+   每层的TRM能拿到所有输入的信息，这就是双向。
+
+   在BERT中两种预训练的方式来建立语言模型：
+
+   1. Masked LM
+
+      就是随机遮盖或者替换，
+
+   2. NSP next sentence prediction
+
+      
 
 
 

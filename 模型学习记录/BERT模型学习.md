@@ -2,6 +2,8 @@
 
 目录：
 
+https://www.bilibili.com/video/BV1Ey4y1874y
+
 ![image-20210316225810743](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\BERT模型学习.assets\image-20210316225810743.png)
 
 1. bert整体模型架构
