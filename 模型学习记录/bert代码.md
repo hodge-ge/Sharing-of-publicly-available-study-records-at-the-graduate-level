@@ -36,8 +36,8 @@ def forward(
 	    '''
 	     loss:(1,)
 	     logits :(batch_size, sequence_length, config.num_labels) (64,128,10)
-	     hidden_state: (batch_size, sequence_length, hidden_size)
-	     attention: (batch_size, num_heads, sequence_length, sequence_length)
+	     hidden_state: (batch_size, sequence_length, hidden_size) (64,128,768)
+	     attention: (batch_size, num_heads, sequence_length, sequence_length) 
 	    '''
         sequence_output = self.dropout(sequence_output) 
         logits = self.classifier(sequence_output) # （64*128*768） * （768*10） = 64*128*10
@@ -61,4 +61,8 @@ def forward(
         return outputs  # (loss), scores, (hidden_states), (attentions)
 
 ~~~
+
+![image-20210420091710132](C:%5CUsers%5Clenovo%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210420091710132.png)
+
+
 
