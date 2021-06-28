@@ -100,6 +100,10 @@ encoder和decoder结构不同
 
       之后看箭头，a<sub>i</sub>和Value<sub>i</sub>乘做和得到注意力分数
 
+      
+
+      ==QK得到一个相似程度，归一化得到一个和为1的权重矩阵，之后与输入X经过线性变换得到的V进行计算，得到最终过滤之后的X特征==
+
       ![image-20210628110056879](D:%5C013_GitHubDesktopSetup_data%5CSharing-of-publicly-available-study-records-at-the-graduate-level%5C%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%5CTRM%E6%A8%A1%E5%9E%8B%E5%AD%A6%E4%B9%A0.assets%5Cimage-20210628110056879.png)
 
     - ==从本质上理解，Attention是从大量信息中有筛选出少量重要信息，并聚焦到这些重要信息上，忽略大多不重要的信息。权重越大越聚焦于其对应的Value值上，即权重代表了信息的重要性，而Value是其对应的信息。==
