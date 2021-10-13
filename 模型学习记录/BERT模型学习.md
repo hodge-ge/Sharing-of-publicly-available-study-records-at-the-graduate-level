@@ -40,13 +40,11 @@ https://www.bilibili.com/video/BV1Ey4y1874y
 
    ![image-20210317072407847](D:\github_data\Sharing-of-publicly-available-study-records-at-the-graduate-level\模型学习记录\BERT模型学习.assets\image-20210317072407847.png<img src="https://raw.githubusercontent.com/hodge-ge/imgbed/main/20210318184430.png" alt="image-20210317073536594" style="zoom:80%;" />
 
-   
-
    粉色的是输入：重点看两个部分，一个是正常词汇，一个是CLS、SEP、SEP三个两种特殊符号。他们存在的意义 ：做NSP任务，next sentense prediction用来判断**两个句子**之间的关系。
 
    - SEP: 告诉模型 我之前是一个句子，之后是另一个家嘴
-   - CLS:因为做的NSP是二分类任务，CLS输出接二分类器。CLS输出向量不能代表一个或者两个句子的语义信息。 
-
+- CLS:因为做的NSP是二分类任务，CLS输出接二分类器。CLS输出向量不能代表一个或者两个句子的语义信息。 
+   
    黄色的是token embeddings: 对包含CLS,SEP的所有词进行embedding。
 
    绿色的是segment embeddings: 第一个句子全用0表示，第二个句子用1表示。
