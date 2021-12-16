@@ -44,7 +44,7 @@ https://www.bilibili.com/video/BV1Ey4y1874y
 
    - SEP: 告诉模型 我之前是一个句子，之后是另一个家嘴
 - CLS:因为做的NSP是二分类任务，CLS输出接二分类器。CLS输出向量不能代表一个或者两个句子的语义信息。 
-   
+  
    黄色的是token embeddings: 对包含CLS,SEP的所有词进行embedding。
 
    绿色的是segment embeddings: 第一个句子全用0表示，第二个句子用1表示。
@@ -128,12 +128,6 @@ https://www.bilibili.com/video/BV1Ey4y1874y
    第三步：聚焦文本分类
 
    第四步：具体任务
-
-   
-
-   
-
-   
 
 4. 代码解析
 
